@@ -18,8 +18,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 public class Main extends Application {
-	Scene mainMenu;
-	Scene levelSelectScene;
+	MainMenuScene mainMenu;
+	LevelSelectionScene levelSelectScene;
 	Stage stage;
 
 	@Override
@@ -28,18 +28,11 @@ public class Main extends Application {
 
 		stage.setTitle("445 Capstone");
 
-		mainMenu = new MainMenuScene();
-		initLevelSelect();
+		mainMenu = new MainMenuScene(stage);
+		levelSelectScene = new LevelSelectionScene(stage);
 
-		stage.setScene(mainMenu);
+		stage.setScene(mainMenu.getScene());
 		stage.show();
-	}
-
-	private void initLevelSelect() {
-
-		HBox root = new HBox();
-		root.setBackground(defaultBackground);
-		levelSelectScene = new Scene(root, sceneWidth, sceneHeight);
 	}
 
 

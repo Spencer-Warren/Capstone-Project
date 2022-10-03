@@ -11,11 +11,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class MainMenuScene extends DefaultScene {
 
-	protected MainMenuScene(Scene s) {
-		super(new HBox());
+	protected MainMenuScene(Stage stage) {
+		super(new HBox(), stage);
 	}
 
 	@Override
@@ -24,7 +25,7 @@ public class MainMenuScene extends DefaultScene {
 		Button about = new Button("About..");
 		Button exit = new Button("Exit");
 
-		levelSelect.setOnAction((ActionEvent event) -> stage.setScene(levelSelectScene));
+		levelSelect.setOnAction((ActionEvent event) -> System.out.println("Ha")); //getStage().setScene(levelSelectScene));
 
 		exit.setOnAction((ActionEvent event) -> Platform.exit());
 
@@ -39,9 +40,9 @@ public class MainMenuScene extends DefaultScene {
 		}
 
 		// then you set to your node
-		root.setBackground(defaultBackground);
-		HBox.setMargin(root, new Insets(50, 50, 50, 50));
-		root.getChildren().addAll(buttons);
+		getRoot().setBackground(defaultBackground);
+		HBox.setMargin(getRoot(), new Insets(50, 50, 50, 50));
+		getRoot().getChildren().addAll(buttons);
 	}
 	
 }
