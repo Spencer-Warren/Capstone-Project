@@ -18,7 +18,7 @@ public class DefaultProperties {
 				Color.valueOf("#1b2040"), 
 				new CornerRadii(1),
 				new Insets(0.0, 0.0, 0.0, 0.0));
-		
+		 
 		defaultBackground = new Background(backFill);
 		
 	}
