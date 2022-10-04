@@ -23,13 +23,10 @@ dependencies {
 
     implementation 'org.mockito:mockito-junit-jupiter:+' // 3.6.28  https://site.mockito.org/
     implementation 'org.mockito:mockito-inline:+' // 3.6.28
-    
-    implementation 'com.google.truth:truth:+' // 1.1 https://truth.dev/
 
-    implementation 'org.testfx:testfx-core:+' // 4.0.16-alpha  https://testfx.github.io/TestFX/
-    implementation 'org.testfx:testfx-junit5:+' // 4.0.16-alpha
-
-    implementation 'org.mariadb.jdbc:mariadb-java-client:+'	
+	// https://mvnrepository.com/artifact/org.json/json
+	implementation 'org.json:json:20220924'
+	
 }
 
 javafx {

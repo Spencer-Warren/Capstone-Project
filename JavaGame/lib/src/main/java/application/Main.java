@@ -11,17 +11,21 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) {
 		this.stage = stage;
-
 		stage.setTitle("445 Capstone");
-		levelSelectScene = new LevelSelectionScene(stage);
-		mainMenu = new MainMenuScene( stage);
-
-		stage.setScene(mainMenu.getScene());
+		
+		initScenes();
+		
+		stage.setScene(mainMenu.getScene()); // start on main Menu
 		stage.show();
 	}
 	
-	public LevelSelectionScene getLevelSelectScene() {
-		return levelSelectScene;
+	// initialize scenes and bind buttons
+	private void initScenes() {
+		levelSelectScene = new LevelSelectionScene(stage);
+		mainMenu = new MainMenuScene(stage);
+		
+	
+		mainMenu.bindButtonToScene(mainMenu.getLevelButton(), levelSelectScene);
 	}
 
 	public static void main(String[] args) {

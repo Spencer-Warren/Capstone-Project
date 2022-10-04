@@ -12,13 +12,14 @@ import javafx.stage.Stage;
 public class MainMenuScene extends DefaultScene {
 	private Button levelButton; 
 	
+
 	protected MainMenuScene(Stage stage) {
 		super(new HBox(), stage);
 	} 
  
 	@Override
 	protected void initElements() {
-		Button levelSelect = new Button("Levels");
+		levelButton = new Button("Levels");
 		Button about = new Button("About..");
 		Button exit = new Button("Exit");
 
@@ -26,7 +27,7 @@ public class MainMenuScene extends DefaultScene {
 	
 		VBox buttons = new VBox(50);
 		buttons.setAlignment(Pos.CENTER_LEFT);
-		buttons.getChildren().addAll(levelSelect, about, exit);
+		buttons.getChildren().addAll(levelButton, about, exit);
 
 		for (Node n : buttons.getChildren()) {
 			if (n instanceof Button b) {
@@ -36,4 +37,9 @@ public class MainMenuScene extends DefaultScene {
 		getRoot().getChildren().addAll(buttons);
 		
 	}
+	
+	public Button getLevelButton() {
+		return levelButton;
+	}
 }
+
