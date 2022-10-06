@@ -8,6 +8,7 @@
 
 plugins {
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'org.openjfx.javafxplugin' version '0.0.13' // https://plugins.gradle.org/plugin/org.openjfx.javafxplugin
 }
 
@@ -19,11 +20,6 @@ sourceCompatibility = 17
 targetCompatibility = 17
 
 dependencies {
-    implementation 'org.junit.jupiter:junit-jupiter:+'
-
-    implementation 'org.mockito:mockito-junit-jupiter:+' // 3.6.28  https://site.mockito.org/
-    implementation 'org.mockito:mockito-inline:+' // 3.6.28
-
 	// https://mvnrepository.com/artifact/org.json/json
 	implementation 'org.json:json:20220924'
 	
@@ -37,3 +33,17 @@ javafx {
 test {
     useJUnitPlatform()
 }
+
+        
+shadowJar {
+   archiveBaseName.set('JavaGame')
+   archiveClassifier.set('')
+   archiveVersion.set('')
+}
+
+jar {
+	manifest {
+		attributes 'Main-Class': 'application.Launcher'
+	}
+}
+

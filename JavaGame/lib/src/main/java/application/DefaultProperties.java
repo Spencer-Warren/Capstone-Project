@@ -15,7 +15,7 @@ public class DefaultProperties {
 	}
 
 	static {
-		BackgroundFill backFill = new BackgroundFill(Color.valueOf("#1b2040"), new CornerRadii(1),
+		BackgroundFill backFill = new BackgroundFill(Color.WHITESMOKE, new CornerRadii(1),
 				new Insets(0.0, 0.0, 0.0, 0.0));
 
 		DEFAULT_BACKGROUND = new Background(backFill);
