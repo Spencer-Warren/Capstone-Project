@@ -11,7 +11,7 @@ public class AboutScene extends SubScene {
 	@Override
 	protected void initElements() {
 		
-		getRoot().getChildren().add(back);
+		getRoot().getChildren().add(getBack());
 	}
 
 

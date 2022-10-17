@@ -39,7 +39,7 @@ public class MainMenuScene extends DefaultScene {
 		Text title = new Text();
 		title.setText("Java Capstone Project");
 		title.setFill(Color.BLACK);
-		title.setFont(Font.font("Verdana", FontWeight.NORMAL, 50));
+		title.setFont(Font.font("Verdana", FontWeight.NORMAL, 55));
 		title.setTextAlignment(TextAlignment.CENTER);
 
 		StackPane titlePane = new StackPane();
@@ -49,17 +49,21 @@ public class MainMenuScene extends DefaultScene {
 
 		Text foot = new Text();
 		foot.setText("By: Spencer Warren");
-
+		foot.setFont(Font.font(20));
+		
 		VBox buttons = new VBox(65);
 		buttons.setAlignment(Pos.CENTER);
 		buttons.getChildren().addAll(levelButton, aboutButton, exit);
 
 		// make buttons fill empty space
 		buttons.prefHeightProperty().bind(getScene().heightProperty());
-
+		
+		Font buttonFont = Font.font(20);
+		
 		for (Node n : buttons.getChildren()) {
 			if (n instanceof Button b) {
 				b.setPrefSize(400, 40);
+				b.setFont(buttonFont);
 			}
 		}
 		getRoot().getChildren().addAll(titlePane, buttons, foot);
