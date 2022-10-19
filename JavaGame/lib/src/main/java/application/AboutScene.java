@@ -7,6 +7,7 @@ public class AboutScene extends SubScene {
 	
 	protected AboutScene(Stage stage, DefaultScene subScene) {
 		super(stage, new VBox(), subScene);
+		initElements();
 	}
 	@Override
 	protected void initElements() {

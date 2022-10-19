@@ -12,7 +12,7 @@ public abstract class SubScene extends DefaultScene {
 		super(stage, root);
 		this.subScene = subScene;
 		this.back = new Button("Back...");
-		initElements(); // Initialize elements, this is to be defined in subclasses
+//		initElements(); // Initialize elements, this is to be defined in subclasses
 	}
 
 	@Override

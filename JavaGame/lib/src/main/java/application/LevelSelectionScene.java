@@ -1,5 +1,6 @@
 package application;
 
+import java.util.List;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -20,9 +21,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class LevelSelectionScene extends SubScene {
+	private List<Level> levels;
 	
-	protected LevelSelectionScene(Stage stage, DefaultScene subScene) {
+	protected LevelSelectionScene(Stage stage, DefaultScene subScene, List<Level> levels) {
 		super(stage, new VBox(), subScene);
+		this.levels = levels;
+		initElements();
 	}
 
 	@Override
@@ -54,23 +58,25 @@ public class LevelSelectionScene extends SubScene {
 		int levelNumber = 1;
 		GridPane grid = new GridPane();
 		Font font = Font.font("Helvetica", FontWeight.BOLD, 40);
-		
 		grid.setHgap(40);
 		grid.setVgap(40);
 		grid.setAlignment(Pos.CENTER);
 		
 		for(int x = 0; x < 2; x++) {
 			for(int y = 0; y < 6; y++) {
-				Button button = new Button(String.valueOf(levelNumber++));
+				Button button = new Button(String.valueOf(levelNumber));
 				button.setMinHeight(110);
 				button.setMinWidth(110);
 				button.setFont(font);
 				button.setTextFill(Color.RED);
 				grid.add(button, y, x);
+				bindButtonToScene(button, levels.get(levelNumber - 1));
+				levelNumber++;
 			}
 			
 		}
 		return grid;
 	}
+	
 
 }
