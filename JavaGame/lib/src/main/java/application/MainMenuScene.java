@@ -43,14 +43,10 @@ public class MainMenuScene extends DefaultScene {
 		title.setMaxWidth(Double.MAX_VALUE);
 		title.getStyleClass().add("title-label");
 
-//		StackPane titlePane = new StackPane();
-//		titlePane.getChildren().add(title);
-//		StackPane.setAlignment(title, Pos.CENTER);
-//		titlePane.setPadding(new Insets(50, 0, 0, 0));
-
 		Text foot = new Text();
 		foot.setText("By: Spencer Warren");
 		foot.setFont(Font.font(20));
+		foot.getStyleClass().add("footer");
 		
 		VBox buttons = new VBox(65);
 		buttons.setAlignment(Pos.CENTER);

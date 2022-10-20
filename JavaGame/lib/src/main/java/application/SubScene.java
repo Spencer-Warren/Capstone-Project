@@ -1,5 +1,6 @@
 package application;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -29,9 +30,10 @@ public abstract class SubScene extends DefaultScene {
 	}
 	
 	/**
-	 * Given string title create the header
+	 * Given string create the header
 	 * which includes the back button and 
-	 * the given title 
+	 * a title created with the 
+	 * given string
 	 * 
 	 * @param title string title to add
 	 */
@@ -40,7 +42,8 @@ public abstract class SubScene extends DefaultScene {
 		titleLabel.getStyleClass().add("title-label");
 		titleLabel.setAlignment(Pos.CENTER);
 		titleLabel.setMaxWidth(Double.MAX_VALUE);
-		DefaultProperties.border(titleLabel);
+		titleLabel.setPadding(new Insets(20,0,0,0));
+//		DefaultProperties.border(titleLabel);
 
 		AnchorPane backButton = new AnchorPane(getBack());
 		AnchorPane.setLeftAnchor(getBack(), 0.0);

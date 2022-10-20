@@ -155,11 +155,6 @@
     -fx-background-color: transparent !important;
 }
 
-.title-label {
-	-fx-font-size: 40px;
-	
-}
-
 
 /* Button */
 .button {
@@ -174,14 +169,7 @@
     -fx-border-style: solid;
     -fx-border-radius: 2px;
 }
-.button-level {
-	 -fx-border-radius: 15px;
-	 -fx-background-radius: 15px;
-	 -fx-font-size: 40px;
 
-}
-.button-level:hover {
-}
 
 .button:focused {
     -fx-border-width: 1.3px;
@@ -1212,4 +1200,28 @@
 
 .code{
     -fx-text-fill: white !important;
+}
+
+
+
+/**
+----------------------------------------------------------------------
+* my code
+*/
+
+.title-label {
+	-fx-font-size: 55px;
+	
+}
+
+.button-level {
+	 -fx-border-radius: 15px;
+	 -fx-background-radius: 15px;
+	 -fx-font-size: 40px;
+
+}
+
+.footer{
+	-fx-font-style: italic;
+
 }

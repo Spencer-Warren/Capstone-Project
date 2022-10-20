@@ -32,6 +32,7 @@ public class LevelSelectionScene extends SubScene {
 	private GridPane levelButtons() {
 		int levelNumber = 1;
 		GridPane grid = new GridPane();
+		DefaultProperties.fillParent(getRoot(), grid);
 		grid.setHgap(40);
 		grid.setVgap(40);
 		grid.setAlignment(Pos.CENTER);
