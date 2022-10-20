@@ -1205,7 +1205,6 @@
 
 
 /**
-----------------------------------------------------------------------
 * my code
 */
 
@@ -1219,6 +1218,11 @@
 	 -fx-background-radius: 15px;
 	 -fx-font-size: 40px;
 
+}
+
+.button-menu {
+	-fx-font-size: 25px;
+	
 }
 
 .footer{

@@ -21,7 +21,7 @@ public class LevelSelectionScene extends SubScene {
 	@Override
 	protected void initElements() {		
 		GridPane buttonGrid = levelButtons();
-		DefaultProperties.border(buttonGrid);
+//		DefaultProperties.border(buttonGrid);
 		
 		createTitleBar("Level Selection");
 		

@@ -37,11 +37,7 @@ public class MainMenuScene extends DefaultScene {
 
 		exit.setOnAction((ActionEvent event) -> Platform.exit());
 
-		Label title = new Label();
-		title.setText("Java Capstone Project");
-		title.setAlignment(Pos.CENTER);
-		title.setMaxWidth(Double.MAX_VALUE);
-		title.getStyleClass().add("title-label");
+		createTitleBar("Learn to Use Java!!");
 
 		Text foot = new Text();
 		foot.setText("By: Spencer Warren");
@@ -54,16 +50,14 @@ public class MainMenuScene extends DefaultScene {
 
 		// make buttons fill empty space
 		buttons.prefHeightProperty().bind(getScene().heightProperty());
-		
-		Font buttonFont = Font.font(20);
-		
+				
 		for (Node n : buttons.getChildren()) {
 			if (n instanceof Button b) {
-				b.setPrefSize(400, 40);
-				b.setFont(buttonFont);
+				b.setPrefSize(450, 40);
+				b.getStyleClass().add("button-menu");
 			}
 		}
-		getRoot().getChildren().addAll(title, buttons, foot);
+		getRoot().getChildren().addAll(buttons, foot);
 	}
 
 	public Button getLevelButton() {
