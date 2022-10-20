@@ -1,11 +1,17 @@
 package application;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public abstract class SubScene extends DefaultScene {
-	private DefaultScene subScene;
+	protected DefaultScene subScene;
 	private Button back;
 
 	protected SubScene(Stage stage, VBox root, DefaultScene subScene) {
@@ -21,8 +27,34 @@ public abstract class SubScene extends DefaultScene {
 	protected Button getBack() {
 		return back;
 	}
+	
+	/**
+	 * Given string title create the header
+	 * which includes the back button and 
+	 * the given title 
+	 * 
+	 * @param title string title to add
+	 */
+	protected void createTitleBar(String title) { 
+		Label titleLabel = new Label(title);
+		titleLabel.getStyleClass().add("title-label");
+		titleLabel.setAlignment(Pos.CENTER);
+		titleLabel.setMaxWidth(Double.MAX_VALUE);
+		DefaultProperties.border(titleLabel);
+
+		AnchorPane backButton = new AnchorPane(getBack());
+		AnchorPane.setLeftAnchor(getBack(), 0.0);
+
+		HBox titleBox = new HBox(backButton,  titleLabel);
+		
+		HBox.setHgrow(titleLabel, Priority.ALWAYS);
+		
+		getRoot().getChildren().addAll(titleBox);
+	}
 
 	public void bindButtons() {
 		this.bindButtonToScene(back, subScene);
 	}
+	
+	
 }

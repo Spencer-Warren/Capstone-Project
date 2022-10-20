@@ -1,7 +1,6 @@
 package application;
 
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Level extends SubScene {
@@ -10,12 +9,17 @@ public class Level extends SubScene {
 		super(stage, new VBox(), subScene);
 		this.number = number;
 		initElements();
+//		bindButtons();
+		
 	}
 
 	@Override
 	protected void initElements() {
-		Text title = new Text("Level: " + number);
-		getRoot().getChildren().addAll(title);
+		createTitleBar("Level: " + number);
+	}
+
+	public void bindButtons(DefaultScene scene) {
+		bindButtonToScene(getBack(), scene);
 	}
 
 }

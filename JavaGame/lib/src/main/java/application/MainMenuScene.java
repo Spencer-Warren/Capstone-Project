@@ -6,6 +6,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
@@ -36,16 +37,16 @@ public class MainMenuScene extends DefaultScene {
 
 		exit.setOnAction((ActionEvent event) -> Platform.exit());
 
-		Text title = new Text();
+		Label title = new Label();
 		title.setText("Java Capstone Project");
-		title.setFill(Color.BLACK);
-		title.setFont(Font.font("Verdana", FontWeight.NORMAL, 55));
-		title.setTextAlignment(TextAlignment.CENTER);
+		title.setAlignment(Pos.CENTER);
+		title.setMaxWidth(Double.MAX_VALUE);
+		title.getStyleClass().add("title-label");
 
-		StackPane titlePane = new StackPane();
-		titlePane.getChildren().add(title);
-		StackPane.setAlignment(title, Pos.CENTER);
-		titlePane.setPadding(new Insets(50, 0, 0, 0));
+//		StackPane titlePane = new StackPane();
+//		titlePane.getChildren().add(title);
+//		StackPane.setAlignment(title, Pos.CENTER);
+//		titlePane.setPadding(new Insets(50, 0, 0, 0));
 
 		Text foot = new Text();
 		foot.setText("By: Spencer Warren");
@@ -66,7 +67,7 @@ public class MainMenuScene extends DefaultScene {
 				b.setFont(buttonFont);
 			}
 		}
-		getRoot().getChildren().addAll(titlePane, buttons, foot);
+		getRoot().getChildren().addAll(title, buttons, foot);
 	}
 
 	public Button getLevelButton() {

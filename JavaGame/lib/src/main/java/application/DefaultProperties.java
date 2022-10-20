@@ -40,7 +40,10 @@ public class DefaultProperties {
 	 */
 	public static void border(Region r) {
 		r.setBorder(new Border(
-				new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+				new BorderStroke(Color.BLACK, 
+						BorderStrokeStyle.SOLID, 
+						new CornerRadii(10), 
+						BorderWidths.DEFAULT)));
 	}
 
 	/**

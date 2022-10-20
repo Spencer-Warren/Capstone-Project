@@ -17,10 +17,10 @@ public class Main extends Application {
 	public void start(Stage stage) {
 		this.stage = stage;
 		stage.setTitle("445 Capstone");
-		
+
 		initLevels();
 		initScenes();
-
+		
 		stage.setScene(mainMenu.getScene()); // start on main Menu
 		stage.setResizable(false);
 		stage.show();
@@ -36,6 +36,9 @@ public class Main extends Application {
 		mainMenu.bindButtonToScene(mainMenu.getAboutButton(), aboutScene);
 		levelSelectScene.bindButtons();
 		aboutScene.bindButtons();
+		for(Level l : levels) {
+			l.bindButtons(levelSelectScene);
+		}
 	}
 
 	private void initLevels() {
