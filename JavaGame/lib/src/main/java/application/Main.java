@@ -18,7 +18,7 @@ public class Main extends Application {
 		this.stage = stage;
 		stage.setTitle("445 Capstone");
 
-		initLevels();
+		levels = new LevelCreation().initLevels(stage, levelSelectScene);
 		initScenes();
 		
 		stage.setScene(mainMenu.getScene()); // start on main Menu
@@ -41,12 +41,7 @@ public class Main extends Application {
 		}
 	}
 
-	private void initLevels() {
-		levels = new ArrayList<>();
-		for (int i = 1; i < 13; i++) {
-			levels.add(new Level(stage, levelSelectScene, i));
-		}
-	}
+	
 
 	public static void main(String[] args) {
 		launch(args);

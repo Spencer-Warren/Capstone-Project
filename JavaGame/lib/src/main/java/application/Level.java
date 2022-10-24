@@ -1,13 +1,20 @@
 package application;
 
+import org.json.simple.JSONObject;
+
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Level extends SubScene {
-	private int number;
-	public Level(Stage stage, DefaultScene subScene, int number) {
+	private JSONObject jsonData;
+	private String title;
+	private String body;
+	private String example;
+	public Level(Stage stage, DefaultScene subScene, JSONObject levelData) {
 		super(stage, new VBox(), subScene);
-		this.number = number;
+		this.title =   (String) levelData.get("title");
+		this.body =    (String) levelData.get("body");
+		this.example = (String) levelData.get("example");
 		initElements();
 //		bindButtons();
 		
@@ -15,7 +22,7 @@ public class Level extends SubScene {
 
 	@Override
 	protected void initElements() {
-		createTitleBar("Level: " + number);
+		createTitleBar(title);
 	}
 
 	public void bindButtons(DefaultScene scene) {
