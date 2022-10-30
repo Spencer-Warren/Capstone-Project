@@ -2,8 +2,6 @@ package application;
 
 import org.json.simple.JSONObject;
 
-import io.github.eugener.highlightfx.Syntax;
-import io.github.eugener.highlightfx.SyntaxPane;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
@@ -78,15 +76,10 @@ public class Level extends SubScene {
 		Label block = new Label(text.toString());
 		text.setLength(0); // clear string builder
 		if (isCode) {
-	        SyntaxPane syntaxPane = new SyntaxPane();
-	        syntaxPane.setSyntax(Syntax.JAVA);
-	        syntaxPane.setText(text.toString());
-//			DefaultProperties.border(block);
-//			block.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(10), Insets.EMPTY)));
-//			block.setPadding(new Insets(15));
-//			block.setStyle("-fx-text-fill: white;");
-	        body.getChildren().add(syntaxPane);
-	        return;
+			DefaultProperties.border(block);
+			block.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(10), Insets.EMPTY)));
+			block.setPadding(new Insets(15));
+			block.setStyle("-fx-text-fill: white;");
 		}
 		block.setWrapText(true);
 		block.setTextAlignment(TextAlignment.JUSTIFY);
