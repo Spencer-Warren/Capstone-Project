@@ -29,10 +29,14 @@ public class LevelSelectionScene extends SubScene {
 		
 	}
 	
+	
 	private GridPane levelButtons() {
+		
 		int levelNumber = 1;
+		
 		GridPane grid = new GridPane();
 		DefaultProperties.fillParent(getRoot(), grid);
+		
 		grid.setHgap(40);
 		grid.setVgap(40);
 		grid.setAlignment(Pos.CENTER);
@@ -40,12 +44,17 @@ public class LevelSelectionScene extends SubScene {
 		
 		for(int x = 0; x < 2; x++) {
 			for(int y = 0; y < 6; y++) {
+				
 				Button button = new Button(String.valueOf(levelNumber));
-				button.setPrefHeight(110);
-				button.setPrefWidth(110);
+				button.setPrefHeight(130);
+				button.setPrefWidth(130);
 				button.getStyleClass().add("button-level");
+				
 				grid.add(button, y, x);
+				// Since button with a 1 belongs to
+				// the 1st level, but its in the 0th position
 				bindButtonToScene(button, levels.get(levelNumber - 1));
+				
 				levelNumber++;
 			}
 			

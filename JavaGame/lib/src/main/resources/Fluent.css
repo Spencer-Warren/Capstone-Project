@@ -1,6 +1,6 @@
 .root {
     -fx-background-color: #FFFFFF;
-    -fx-font-family: Segoe UI;
+    -fx-font-family: 'Times New Roman';
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
 }
@@ -1210,22 +1210,62 @@
 
 .title-label {
 	-fx-font-size: 55px;
+	-fx-font-weight: bold;
+	-fx-text-fill: #272838;
+	-fx-border-radius: 15px;
+	
+	-fx-background-radius: 15px;
+	-fx-background-color: #FFFFFF;
+	-fx-background-insets: 25px 350px 0px 350px;
 	
 }
 
 .button-level {
 	 -fx-border-radius: 15px;
+	 -fx-border-width: 2px;
 	 -fx-background-radius: 15px;
-	 -fx-font-size: 40px;
+	 -fx-background-insets: 2px;
+	 -fx-font: 55px 'Samson';
 
 }
 
 .button-menu {
 	-fx-font-size: 25px;
-	
+	-fx-background-color: #fbfef9;
+	-fx-background-insets: 2px;
+}
+
+.button-menu:hover,.button-level:hover {
+	-fx-background-color: #AFB0C0;
 }
 
 .footer{
 	-fx-font-style: italic;
+	-fx-font: 30px 'Samson';
+	-fx-background-color: #FFFFFF;
+	
+}
 
+.background{
+   -fx-background-color: linear-gradient(from 750px 750px to 1000px 1000px, #7e7f9a, #eb9486);
+}
+
+.level-body {
+	-fx-background-radius: 15px;
+	-fx-border-radius: 15px;
+	-fx-background-color: #FFFFFF;
+	-fx-border-color:     #000000;
+}
+
+.code-block{
+	-fx-background-radius: 10px;
+	-fx-border-radius:     10px;
+	-fx-background-color: #272838;
+	-fx-border-color:     #AFB0C0;
+	-fx-text-fill: 		  #fbfef9;
+	-fx-padding: 10px 20px 0px 10px;
+}
+
+.text-block{
+	-fx-padding: 0px;
 }

@@ -1,6 +1,8 @@
 package application;
 
 import static application.DefaultProperties.*;
+
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
@@ -12,8 +14,8 @@ import javafx.stage.Window;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 public abstract class DefaultScene {
@@ -26,6 +28,7 @@ public abstract class DefaultScene {
 		this.root = root; // the root pane we are adding elements too
 		//root.setBackground(DEFAULT_BACKGROUND); // Use our default background in default properties
 		root.getStylesheets().add(Main.class.getResource("/Fluent.css").toString());
+		root.getStyleClass().add("background");
 		root.setPadding(new Insets(20));
 		scene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
 	}
@@ -36,6 +39,10 @@ public abstract class DefaultScene {
 
 	public VBox getRoot() {
 		return root;
+	}
+
+	protected void setRoot(Region p) {
+		scene.setRoot(p);
 	}
 
 	/**

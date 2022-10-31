@@ -4,6 +4,7 @@ import org.json.simple.JSONObject;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -33,10 +34,16 @@ public class Level extends SubScene {
 		createTitleBar(title);
 		createBody();
 
-//		Label body = new Label(this.bodyText);
 		body.setPadding(new Insets(20));
-		DefaultProperties.border(body);
-
+		body.getStyleClass().add("level-body");
+		
+//		ScrollPane scroll = new ScrollPane();
+//		scroll.autosize();
+//		scroll.setContent(body);
+//		scroll.minHeight(Double.MAX_VALUE);
+//		scroll.minWidth(Double.MAX_VALUE);
+//		
+//		getRoot().getChildren().add(scroll);
 		getRoot().getChildren().add(body);
 	}
 
@@ -44,7 +51,6 @@ public class Level extends SubScene {
 
 		String[] lines = bodyText.split("\n");
 
-		VBox body = new VBox();
 		boolean isCode = false;
 		StringBuilder codeString = new StringBuilder();
 		StringBuilder textString = new StringBuilder();
@@ -64,7 +70,7 @@ public class Level extends SubScene {
 				isCode = true;
 			}
 			
-			else if (!isCode) {
+			else {
 				textString.append(line);
 			}
 
@@ -76,13 +82,9 @@ public class Level extends SubScene {
 		Label block = new Label(text.toString());
 		text.setLength(0); // clear string builder
 		if (isCode) {
-			DefaultProperties.border(block);
-			block.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(10), Insets.EMPTY)));
-			block.setPadding(new Insets(15));
-			block.setStyle("-fx-text-fill: white;");
+			block.getStyleClass().add("code-block");
 		}
 		block.setWrapText(true);
-		block.setTextAlignment(TextAlignment.JUSTIFY);
 		block.setFont(new Font(15));
 		
 		body.getChildren().add(block);
