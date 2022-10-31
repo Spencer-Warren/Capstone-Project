@@ -18,10 +18,6 @@ import javafx.scene.text.Font;
 
 public class DefaultProperties {
 	/**
-	 * Background added to every scene
-	 */
-	public static final Background DEFAULT_BACKGROUND;
-	/**
 	 * default window size
 	 */
 	public static final int SCENE_WIDTH = 1280;
@@ -31,23 +27,7 @@ public class DefaultProperties {
 	}
 
 	static {
-		BackgroundFill backFill = new BackgroundFill(Color.valueOf("#b9db92"), new CornerRadii(1),
-				new Insets(0.0, 0.0, 0.0, 0.0));
-
-		DEFAULT_BACKGROUND = new Background(backFill);
-		
 		Font amiga = DefaultProperties.loadFont("src/main/resources/fonts/Samson.ttf", 40);
-		System.out.println(amiga);
-	}
-
-	/**
-	 * adds a border to the given region mostly used for fixing layouts
-	 * 
-	 * @param r region to add border to
-	 */
-	public static void border(Region r) {
-		r.setBorder(new Border(
-				new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT)));
 	}
 
 	/**

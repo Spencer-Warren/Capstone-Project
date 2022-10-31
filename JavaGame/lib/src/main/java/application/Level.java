@@ -37,6 +37,7 @@ public class Level extends SubScene {
 		body.setPadding(new Insets(20));
 		body.getStyleClass().add("level-body");
 		
+		// not sure if ill use a scroll pane yet
 //		ScrollPane scroll = new ScrollPane();
 //		scroll.autosize();
 //		scroll.setContent(body);
@@ -44,6 +45,7 @@ public class Level extends SubScene {
 //		scroll.minWidth(Double.MAX_VALUE);
 //		
 //		getRoot().getChildren().add(scroll);
+		
 		getRoot().getChildren().add(body);
 	}
 
@@ -79,11 +81,11 @@ public class Level extends SubScene {
 	}
 	
 	private void addToBody(StringBuilder text, boolean isCode) {
-		Label block = new Label(text.toString());
+		
+		Label block = new Label(text.toString().trim());
 		text.setLength(0); // clear string builder
-		if (isCode) {
-			block.getStyleClass().add("code-block");
-		}
+		block.getStyleClass().add(isCode ? "code-block" : "text-block");
+		
 		block.setWrapText(true);
 		block.setFont(new Font(15));
 		

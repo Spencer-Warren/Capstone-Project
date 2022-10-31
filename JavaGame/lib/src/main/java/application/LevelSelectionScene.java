@@ -21,7 +21,6 @@ public class LevelSelectionScene extends SubScene {
 	@Override
 	protected void initElements() {		
 		GridPane buttonGrid = levelButtons();
-//		DefaultProperties.border(buttonGrid);
 		
 		createTitleBar("Level Selection");
 		
@@ -43,7 +42,8 @@ public class LevelSelectionScene extends SubScene {
 		grid.setPadding(new Insets(100));
 		
 		for(int x = 0; x < 2; x++) {
-			for(int y = 0; y < 6; y++) {
+			for(int y = 0; y < 6
+					; y++) {
 				
 				Button button = new Button(String.valueOf(levelNumber));
 				button.setPrefHeight(130);
