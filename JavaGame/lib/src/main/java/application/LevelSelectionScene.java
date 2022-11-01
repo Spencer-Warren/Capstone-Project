@@ -51,7 +51,7 @@ public class LevelSelectionScene extends SubScene {
 				button.getStyleClass().add("button-level");
 				
 				grid.add(button, y, x);
-				// Since button with a 1 belongs to
+				// Since button with a 1 belongs to ,
 				// the 1st level, but its in the 0th position
 				bindButtonToScene(button, levels.get(levelNumber - 1));
 				
