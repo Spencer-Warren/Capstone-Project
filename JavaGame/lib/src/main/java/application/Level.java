@@ -46,7 +46,7 @@ public class Level extends SubScene {
 //		
 //		getRoot().getChildren().add(scroll);
 		
-		getRoot().getChildren().add(body);
+		getRoot().getChildren().addAll(body, new DragAndDrop().create());
 	}
 
 	private void createBody() {
