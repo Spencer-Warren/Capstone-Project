@@ -45,8 +45,13 @@ public class Level extends SubScene {
 //		scroll.minWidth(Double.MAX_VALUE);
 //		
 //		getRoot().getChildren().add(scroll);
+		if (true) {
+			DragAndDrop drag = new DragAndDrop(example, "{", "public");
+			body.getChildren().add(drag.create());
+		}
 		
-		getRoot().getChildren().addAll(body, new DragAndDrop().create());
+		
+		getRoot().getChildren().addAll(body);
 	}
 
 	private void createBody() {
