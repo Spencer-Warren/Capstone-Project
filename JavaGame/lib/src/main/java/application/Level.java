@@ -92,7 +92,6 @@ public class Level extends SubScene {
 		block.getStyleClass().add(isCode ? "code-block" : "text-block");
 		
 		block.setWrapText(true);
-		block.setFont(new Font(15));
 		
 		body.getChildren().add(block);
 	}

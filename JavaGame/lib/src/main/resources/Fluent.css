@@ -67,6 +67,7 @@
 }
 
 .code-block{
+	-fx-font-size: 15.0px;
 	-fx-background-radius: 10.0px;
 	-fx-border-radius:     10.0px;
 	-fx-background-color: #272838;
@@ -76,15 +77,39 @@
 }
 
 .text-block{
+	-fx-font-size: 15.0px;
 	-fx-padding: 0.0px;
 	-fx-border-color: #AFB0C0;
 	-fx-background-insets: 0.0px;
 }
 
+.drag {
+	-fx-font-size: 15.0px;
+	-fx-padding: 5.0px;
+	-fx-margin: 5.0px;
+}
+
+.drag-root {
+	-fx-border-color: #AFB0C0;
+	-fx-border-radius: 5.0px;
+}
+
+.drag-text {
+	-fx-font-size: 15.0px;
+	-fx-padding: 2.0px;
+}
+
+
+
 .empty-drag {
-	-fx-background-color: #AFB0C0;
+	-fx-border-color:     #AFB0C0;
+	-fx-background-color: #FFFFFF;
+	
+
 }
 
 .full-drag {
-	-fx-background-color: #A23420;
+	-fx-border-color: #000000;
+	-fx-border-radius: 5.0px;
+	-fx-border-width: 2.0px;
 }

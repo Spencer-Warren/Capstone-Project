@@ -5,6 +5,7 @@ import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.ClipboardContent;
@@ -28,12 +29,14 @@ public class DragAndDrop {
 		this.wordsToRemove = new ArrayList<>(List.of(wordsToRemove));
 		root = new VBox();
 		blanks = new ArrayList<>();
-
+		
+		root.getStyleClass().add("drag-root");
+		root.setAlignment(Pos.CENTER);
 	}
 
-	private void takeOutWords() {
+	private List<String> takeOutWords() {
 		List<String> lines = List.of(fullExample.split("\r\n"));
-		List<Draggable> words = new ArrayList<>();
+		List<String> words = new ArrayList<>();
 
 		for (String line : lines) {
 			HBox row = new HBox();
@@ -42,20 +45,27 @@ public class DragAndDrop {
 					wordsToRemove.remove(word);
 					Draggable emptyDrag = new Draggable(null, word);
 					blanks.add(emptyDrag);
-					words.add(new Draggable(word, null));
+					words.add(word);
 
 					row.getChildren().add(emptyDrag);
 				} else {
-					row.getChildren().add(new Text(word + " "));
+					Text temp = new Text(word + " ");
+					temp.getStyleClass().add("drag");
+
+					row.getChildren().add(temp);
 				}
 			}
 
 			root.getChildren().add(row);
 		}
-
+		return words;
+	}
+	
+	private void addWordDrags(List<String> words) {
+		List<Draggable> wordDrags = words.stream().map(w -> new Draggable(w, null)).toList();
 		// Add all words weve taken out
 		HBox wordsBlock = new HBox();
-		wordsBlock.getChildren().addAll(words);
+		wordsBlock.getChildren().addAll(wordDrags);
 
 		HBox gradingBar = new HBox();
 		Label grade = new Label();
@@ -67,18 +77,17 @@ public class DragAndDrop {
 			if (isCorrect()) {
 				grade.setText("Passed!");
 			} else {
-				grade.setText("Failed!");
+				grade.setText("Try Again!");
 			}
 		});
 
 		root.getChildren().addAll(wordsBlock, gradingBar);
-
 	}
 
 	public VBox create() {
-		takeOutWords();
+		List<String> words = takeOutWords();
+		addWordDrags(words);
 		return root;
-
 	}
 
 	public boolean isCorrect() {

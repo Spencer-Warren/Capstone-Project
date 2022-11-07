@@ -1,5 +1,6 @@
 package application;
 
+import javafx.geometry.Pos;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Label;
 import javafx.scene.image.WritableImage;
@@ -19,7 +20,8 @@ public class Draggable extends Label {
 		super();
 		this.originalWord = originalWord;
 		this.correctWord = correctWord;
-		this.setPrefSize(50, 20);
+		this.setPrefSize(70, 10);
+		this.setAlignment(Pos.CENTER);
 		this.getStyleClass().add("drag");
 
 		if (originalWord == null) {
