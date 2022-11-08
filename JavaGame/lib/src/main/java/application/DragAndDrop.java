@@ -4,15 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -21,7 +15,6 @@ public class DragAndDrop {
 	private VBox root;
 	private String fullExample;
 	private List<String> wordsToRemove;
-	private List<String> removedWords;
 	private List<Draggable> blanks;
 
 	public DragAndDrop(String example, String... wordsToRemove) {
@@ -69,10 +62,20 @@ public class DragAndDrop {
 
 		HBox gradingBar = new HBox();
 		Label grade = new Label();
-		Button check = new Button("check");
+		Button reset = new Button("Reset");
+		Button check = new Button("Check"); 
+		
+		gradingBar.getChildren().addAll(grade, reset, check);
 
-		gradingBar.getChildren().addAll(grade, check);
-
+		reset.setOnAction((ActionEvent a) ->{
+			for (Draggable d : blanks) {
+				d.reset();
+			}
+			for (Draggable d : wordDrags) {
+				d.reset();
+			}
+		});
+		
 		check.setOnAction((ActionEvent a) -> {
 			if (isCorrect()) {
 				grade.setText("Passed!");

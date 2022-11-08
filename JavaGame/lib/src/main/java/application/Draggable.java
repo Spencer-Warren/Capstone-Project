@@ -14,7 +14,6 @@ public class Draggable extends Label {
 	private String correctWord;
 	private String originalWord;
 	private boolean isEmpty;
-	private boolean isCorrect;
 
 	public Draggable(String originalWord, String correctWord) {
 		super();
@@ -30,6 +29,15 @@ public class Draggable extends Label {
 			set(originalWord);
 		}
 		init();
+	}
+	
+	// Called when reset is called in DragandDrop
+	public void reset() {
+		if (originalWord == null) {
+			empty();
+		} else {
+			set(originalWord);
+		}
 	}
 
 	// Set up this label to be blank
