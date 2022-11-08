@@ -19,6 +19,7 @@ public abstract class SubScene extends DefaultScene {
 		this.parentScene = parentScene;
 		this.back = new Button("Back...");
 		back.getStyleClass().add("button-back");
+		getRoot().setSpacing(25); // seperate title from body
 //		initElements(); // Initialize elements, this is to be defined in subclasses
 	}
 

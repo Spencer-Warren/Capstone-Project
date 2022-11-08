@@ -26,6 +26,7 @@ public class Level extends SubScene {
 		this.bodyText = (String) levelData.get("body");
 		this.example = (String) levelData.get("example");
 		this.body = new VBox();
+		body.setSpacing(15);
 		initElements();
 	}
 
@@ -38,13 +39,13 @@ public class Level extends SubScene {
 		body.getStyleClass().add("level-body");
 		
 		// not sure if ill use a scroll pane yet
-//		ScrollPane scroll = new ScrollPane();
-//		scroll.autosize();
-//		scroll.setContent(body);
-//		scroll.minHeight(Double.MAX_VALUE);
-//		scroll.minWidth(Double.MAX_VALUE);
-//		
-//		getRoot().getChildren().add(scroll);
+		ScrollPane scroll = new ScrollPane();
+		scroll.setContent(getRoot());
+		scroll.setFitToWidth(true);
+		scroll.setFitToHeight(true);
+		scroll.getStyleClass().add("scroll-pane");
+		
+		setRoot(scroll);
 		if (true) {
 			DragAndDrop drag = new DragAndDrop(example, "{", "public");
 			body.getChildren().add(drag.create());
@@ -82,6 +83,9 @@ public class Level extends SubScene {
 			}
 
 		}
+		
+		addToBody(new StringBuilder("Example:"), false);
+		addToBody(new StringBuilder(example), true);
 
 	}
 	
@@ -92,6 +96,7 @@ public class Level extends SubScene {
 		block.getStyleClass().add(isCode ? "code-block" : "text-block");
 		
 		block.setWrapText(true);
+		block.autosize();
 		
 		body.getChildren().add(block);
 	}

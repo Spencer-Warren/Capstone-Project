@@ -13,6 +13,7 @@ import javafx.scene.text.Text;
 
 public class DragAndDrop {
 	private VBox root;
+	private VBox wrapper;
 	private String fullExample;
 	private List<String> wordsToRemove;
 	private List<Draggable> blanks;
@@ -20,9 +21,14 @@ public class DragAndDrop {
 	public DragAndDrop(String example, String... wordsToRemove) {
 		fullExample = example;
 		this.wordsToRemove = new ArrayList<>(List.of(wordsToRemove));
+
 		root = new VBox();
+//		root.setFillWidth(false);
+		wrapper = new VBox(root);
+		wrapper.setAlignment(Pos.CENTER);
+		wrapper.setFillWidth(false);
 		blanks = new ArrayList<>();
-		
+
 		root.getStyleClass().add("drag-root");
 		root.setAlignment(Pos.CENTER);
 	}
@@ -53,21 +59,24 @@ public class DragAndDrop {
 		}
 		return words;
 	}
-	
+
 	private void addWordDrags(List<String> words) {
 		List<Draggable> wordDrags = words.stream().map(w -> new Draggable(w, null)).toList();
 		// Add all words weve taken out
 		HBox wordsBlock = new HBox();
+		wordsBlock.setSpacing(15);
+		wordsBlock.getStyleClass().add("drag-box");
 		wordsBlock.getChildren().addAll(wordDrags);
 
 		HBox gradingBar = new HBox();
 		Label grade = new Label();
 		Button reset = new Button("Reset");
-		Button check = new Button("Check"); 
-		
-		gradingBar.getChildren().addAll(grade, reset, check);
+		Button check = new Button("Check");
 
-		reset.setOnAction((ActionEvent a) ->{
+		gradingBar.setSpacing(10);
+		gradingBar.getChildren().addAll(reset, check, grade);
+
+		reset.setOnAction((ActionEvent a) -> {
 			for (Draggable d : blanks) {
 				d.reset();
 			}
@@ -75,10 +84,10 @@ public class DragAndDrop {
 				d.reset();
 			}
 		});
-		
+
 		check.setOnAction((ActionEvent a) -> {
 			if (isCorrect()) {
-				grade.setText("Passed!");
+				grade.setText("Correct!");
 			} else {
 				grade.setText("Try Again!");
 			}
@@ -90,7 +99,7 @@ public class DragAndDrop {
 	public VBox create() {
 		List<String> words = takeOutWords();
 		addWordDrags(words);
-		return root;
+		return wrapper;
 	}
 
 	public boolean isCorrect() {

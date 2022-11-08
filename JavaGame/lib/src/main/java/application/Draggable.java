@@ -19,15 +19,11 @@ public class Draggable extends Label {
 		super();
 		this.originalWord = originalWord;
 		this.correctWord = correctWord;
-		this.setPrefSize(70, 10);
-		this.setAlignment(Pos.CENTER);
-		this.getStyleClass().add("drag");
+		setPrefSize(70, 10);
+		setAlignment(Pos.CENTER);
+		getStyleClass().add("drag");
 
-		if (originalWord == null) {
-			empty();
-		} else {
-			set(originalWord);
-		}
+		reset();
 		init();
 	}
 	
@@ -44,8 +40,8 @@ public class Draggable extends Label {
 	// and able to receive a draggable
 	private void empty() {
 		setText("");
-		getStyleClass().add("empty-drag");
-		getStyleClass().remove("full-drag");
+		getStyleClass().add("drag-empty");
+		getStyleClass().remove("drag-full");
 		isEmpty = true;
 	}
 
@@ -53,8 +49,8 @@ public class Draggable extends Label {
 	// and able to be dragged
 	private void set(String text) {
 		setText(text);
-		getStyleClass().add("full-drag");
-		getStyleClass().remove("empty-drag");
+		getStyleClass().add("drag-full");
+		getStyleClass().remove("drag-empty");
 		isEmpty = false;
 	}
 
