@@ -3,14 +3,16 @@
 		"1": {
 			"title": "Hello World",
 			"body": "Let's start off with a simple program that prints \"Hello World\" to the screen.\r\nBecause Java is a class-based language, all code must be contained within a class. Here, we've declared a class named \"Main\". \r\n```java \r\n public class Main {\r\n```\r\nA file's name must match the class name, so Main.java should be the file name.\r\nAll Java programs must have a main method, which executes all code inside it. Which is declared like so.\r\n```java\r\n  public static void main(String[] args) {\r\n```\r\nThe given text is printed to the screen using the println() method. You can also notice that code must be contained within the { } brackets, which marks the beginning and end of a block of code. Additionally our one line of code ends with a semicolon which denotes the end of each statement",
-			"example": "public class Main {\r\n  public static void main(String[] args) {\r\n    System.out.println(\"Hello World\");\r\n  }\r\n}"
+			"example": "public class Main {\r\n  public static void main(String[] args) {\r\n    System.out.println(\"Hello World\");\r\n  }\r\n}",
+			"remove" : "public,{,static"
 		}
 	},
 	{
 		"2": {
 			"title": "Output",
 			"body": "In the last level we used the println() method to print out a length of text, we can put any amount of words or phrases into this method.\r\n```java\r\n    System.out.println(\"Hello World!\");\r\n    System.out.println(\"Java is the best Language!\");    \r\n    System.out.println(\"I love Pepperoni Pizza.\");\r\n```\r\n\r\nIn addition to text we can also output numbers and preform math equations\r\n```java\r\n    System.out.println(5 + 5);\r\n```\r\n\r\nwe can also use print() instead of println(), this does not create a new line after every statement.\r\n\r\n```java\r\n    System.out.print(\"Hello World!\");\r\n    System.out.print(\" Not a new line\");\r\n```\r\n\r\nWe also need to add a space in the beginning of the second statement, because Java wont do it for us.\r\n",
-			"example": "public class Main {\r\n  public static void main(String[] args) {\r\n    System.out.println(\"Hello World!\");\r\n    System.out.println(\"Java is the best Language!\");    \r\n    System.out.println(\"I love Pepperoni Pizza.\");\r\n    \r\n    System.out.println(5 + 5);\r\n    \r\n\tSystem.out.print(\"Hello World!\");\r\n    System.out.print(\" Not a new line\");\r\n  }\r\n}"
+			"example": "public class Main {\r\n  public static void main(String[] args) {\r\n    System.out.println(\"Hello World!\");\r\n    System.out.println(\"Java is the best Language!\");    \r\n    System.out.println(\"I love Pepperoni Pizza.\");\r\n    \r\n    System.out.println(5 + 5);\r\n    \r\n\tSystem.out.print(\"Hello World!\");\r\n    System.out.print(\" Not a new line\");\r\n  }\r\n}",
+			"remove" : "class,},Main"
 		}
 	},
 	{

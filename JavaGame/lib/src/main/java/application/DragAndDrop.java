@@ -50,7 +50,6 @@ public class DragAndDrop {
 				} else {
 					Text temp = new Text(word + " ");
 					temp.getStyleClass().add("drag");
-
 					row.getChildren().add(temp);
 				}
 			}

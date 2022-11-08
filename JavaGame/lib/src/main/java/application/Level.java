@@ -8,6 +8,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -18,6 +19,7 @@ public class Level extends SubScene {
 	private String title;
 	private String bodyText;
 	private String example;
+	private String wordsToRemove;
 	private VBox body;
 
 	public Level(Stage stage, DefaultScene subScene, JSONObject levelData) {
@@ -25,6 +27,7 @@ public class Level extends SubScene {
 		this.title = (String) levelData.get("title");
 		this.bodyText = (String) levelData.get("body");
 		this.example = (String) levelData.get("example");
+		this.wordsToRemove = (String) levelData.get("remove");
 		this.body = new VBox();
 		body.setSpacing(15);
 		initElements();
@@ -46,8 +49,8 @@ public class Level extends SubScene {
 		scroll.getStyleClass().add("scroll-pane");
 		
 		setRoot(scroll);
-		if (true) {
-			DragAndDrop drag = new DragAndDrop(example, "{", "public");
+		if (wordsToRemove != null) {
+			DragAndDrop drag = new DragAndDrop(example, wordsToRemove.split(","));
 			body.getChildren().add(drag.create());
 		}
 		
@@ -95,8 +98,8 @@ public class Level extends SubScene {
 		text.setLength(0); // clear string builder
 		block.getStyleClass().add(isCode ? "code-block" : "text-block");
 		
-		block.setWrapText(true);
-		block.autosize();
+		// Use the computed height to display all code in blocks
+		block.setMinHeight(Region.USE_PREF_SIZE);
 		
 		body.getChildren().add(block);
 	}
