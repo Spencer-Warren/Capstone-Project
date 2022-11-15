@@ -1,7 +1,8 @@
-package application;
+package application.Scenes;
 
 import static application.DefaultProperties.*;
 
+import application.Main;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.event.ActionEvent;
@@ -52,6 +53,7 @@ public abstract class DefaultScene {
 	public void bindButtonToScene(Button button, DefaultScene sceneWrapper) {
 		button.setOnAction((ActionEvent a) -> stage.setScene(sceneWrapper.getScene()));
 	}
+	
 	/**
 	 * Given string create the header
 	 * which includes the back button and 

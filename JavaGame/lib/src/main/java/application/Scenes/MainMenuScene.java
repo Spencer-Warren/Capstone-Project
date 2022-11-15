@@ -1,4 +1,4 @@
-package application;
+package application.Scenes;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -14,7 +14,7 @@ public class MainMenuScene extends DefaultScene {
 	private Button levelButton;
 	private Button aboutButton;
 
-	protected MainMenuScene(Stage stage) {
+	public MainMenuScene(Stage stage) {
 		super(stage, new VBox());
 		initElements(); // Initialize elements, this is to be defined in subclasses
 	}

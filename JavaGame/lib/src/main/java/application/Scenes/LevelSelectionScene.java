@@ -1,7 +1,8 @@
-package application;
+package application.Scenes;
 
 import java.util.List;
 
+import application.DefaultProperties;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -12,7 +13,7 @@ import javafx.stage.Stage;
 public class LevelSelectionScene extends SubScene {
 	private List<Level> levels;
 	
-	protected LevelSelectionScene(Stage stage, DefaultScene subScene, List<Level> levels) {
+	public LevelSelectionScene(Stage stage, DefaultScene subScene, List<Level> levels) {
 		super(stage, new VBox(), subScene);
 		this.levels = levels;
 		initElements();

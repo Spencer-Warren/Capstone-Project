@@ -2,6 +2,11 @@ package application;
 
 import java.util.List;
 
+import application.Scenes.AboutScene;
+import application.Scenes.Level;
+import application.Scenes.LevelCreation;
+import application.Scenes.LevelSelectionScene;
+import application.Scenes.MainMenuScene;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -17,20 +22,22 @@ public class Main extends Application {
 		this.stage = stage;
 		stage.setTitle("445 Capstone");
 
-		levels = new LevelCreation().initLevels(stage, levelSelectScene);
 		initScenes();
 		
 		stage.setScene(mainMenu.getScene()); // start on main Menu
-		stage.setResizable(false);
+		stage.setResizable(false); // Disable resizing to reduce complexity
 		stage.show();
 	}
 
 	// initialize scenes and bind buttons
+	// Load order is very important
 	private void initScenes() {
+		levels = new LevelCreation().initLevels(stage, levelSelectScene);
 		mainMenu = new MainMenuScene(stage);
 		levelSelectScene = new LevelSelectionScene(stage, mainMenu, levels);
 		aboutScene = new AboutScene(stage, mainMenu);
 		
+		// Binding buttons to switch between different scenes
 		mainMenu.bindButtonToScene(mainMenu.getLevelButton(), levelSelectScene);
 		mainMenu.bindButtonToScene(mainMenu.getAboutButton(), aboutScene);
 		levelSelectScene.bindButtons();
@@ -41,7 +48,6 @@ public class Main extends Application {
 	}
 
 	
-
 	public static void main(String[] args) {
 		launch(args);
 	}

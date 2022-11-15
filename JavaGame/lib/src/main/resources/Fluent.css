@@ -1,20 +1,15 @@
 .root {
     -fx-background-color: #FFFFFF;
     -fx-font-family: 'Times New Roman';
-    -fx-focus-color: transparent;
+    -fx-focus-color:       transparent;
     -fx-faint-focus-color: transparent;
 }
- 
-/**
-* my code
-*/
 
 .title-label {
 	-fx-font-size: 55.0px;
 	-fx-font-weight: bold;
 	-fx-text-fill: #272838;
-	-fx-border-radius: 15.0px;
-	
+	-fx-border-radius:     15.0px;
 	-fx-background-radius: 15.0px;
 	-fx-background-color: #FFFFFF;
 	-fx-background-insets: 25.0px 320.0px 0.0px 320.0px;
@@ -22,10 +17,10 @@
 }
 
 .button-level {
-	 -fx-border-radius: 15.0px;
-	 -fx-border-width: 2.0px;
+	 -fx-border-radius:     15.0px;
+	 -fx-border-width:       2.0px;
 	 -fx-background-radius: 15.0px;
-	 -fx-background-insets: 2.0px;
+	 -fx-background-insets:  2.0px;
 	 -fx-font: 55.0px 'Samson';
 
 }
@@ -33,15 +28,15 @@
 .button-menu {
 	-fx-font-size: 25.0px;
 	-fx-background-color: #fbfef9;
-	-fx-background-insets: 1.0px;
-	-fx-border-radius: 10.0px;
+	-fx-background-insets:  1.0px;
+	-fx-border-radius:     10.0px;
 	-fx-background-radius: 10.0px;
 	
 }
 
 .button-back {
 	-fx-background-insets: 2.0px;
-	-fx-border-radius: 5.0px;
+	-fx-border-radius:     5.0px;
 	-fx-background-radius: 5.0px;
 }
 
@@ -67,7 +62,7 @@
 }
 
 .code-block{
-	-fx-font-size: 15.0px;
+	-fx-font-size:         15.0px;
 	-fx-background-radius: 10.0px;
 	-fx-border-radius:     10.0px;
 	-fx-background-color: #272838;
@@ -78,27 +73,25 @@
 
 .text-block{
 	-fx-font-size: 15.0px;
-	-fx-padding: 0.0px;
+	-fx-padding:    0.0px;
 	-fx-background-insets: 0.0px;
 }
 
 .drag {
 	-fx-font-size: 15.0px;
-	-fx-padding: 3px;
+	-fx-padding:    3.0px;
 }
 
 .drag-root {
 	-fx-border-color: #AFB0C0;
 	-fx-border-radius: 5.0px;
-	-fx-padding: 20.0px;
+	-fx-padding:      20.0px;
 }
 
 .drag-text {
 	-fx-font-size: 15.0px;
-	-fx-padding: 2.0px;
+	-fx-padding:    2.0px;
 }
-
-
 
 .drag-empty {
 	-fx-border-color:     #AFB0C0;
@@ -110,13 +103,10 @@
 .drag-full {
 	-fx-border-color: #000000;
 	-fx-border-radius: 5.0px;
-	-fx-border-width: 2.0px;
+	-fx-border-width:  2.0px;
 }
 
 .drag-box {
 	-fx-padding: 10.0px;
 }
 
-.scroll-pane .viewport{
-
-}

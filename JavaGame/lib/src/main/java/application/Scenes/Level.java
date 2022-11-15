@@ -1,7 +1,8 @@
-package application;
+package application.Scenes;
 
 import org.json.simple.JSONObject;
 
+import application.Drag.DragAndDrop;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -24,9 +25,9 @@ public class Level extends SubScene {
 
 	public Level(Stage stage, DefaultScene subScene, JSONObject levelData) {
 		super(stage, new VBox(), subScene);
-		this.title = (String) levelData.get("title");
+		this.title    = (String) levelData.get("title");
 		this.bodyText = (String) levelData.get("body");
-		this.example = (String) levelData.get("example");
+		this.example  = (String) levelData.get("example");
 		this.wordsToRemove = (String) levelData.get("remove");
 		this.body = new VBox();
 		body.setSpacing(15);

@@ -1,4 +1,4 @@
-package application;
+package application.Scenes;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 public class AboutScene extends SubScene {
 
-	protected AboutScene(Stage stage, DefaultScene subScene) {
+	public AboutScene(Stage stage, DefaultScene subScene) {
 		super(stage, new VBox(), subScene);
 		initElements();
 	}
