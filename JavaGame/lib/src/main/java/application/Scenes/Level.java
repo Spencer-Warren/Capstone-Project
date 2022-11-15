@@ -2,7 +2,9 @@ package application.Scenes;
 
 import org.json.simple.JSONObject;
 
+import application.Mechanic;
 import application.Drag.DragAndDrop;
+import application.Move.Move;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -17,28 +19,50 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class Level extends SubScene {
+	private JSONObject levelData;
 	private String title;
 	private String bodyText;
 	private String example;
-	private String wordsToRemove;
 	private VBox body;
 
 	public Level(Stage stage, DefaultScene subScene, JSONObject levelData) {
 		super(stage, new VBox(), subScene);
+		this.levelData = levelData;
+		this.body = new VBox();
+		
+		convertJSON();
+		initElements();
+		addMechanic();
+	}
+	
+	// Save strings gotten from JSON file
+	private void convertJSON() {
 		this.title    = (String) levelData.get("title");
 		this.bodyText = (String) levelData.get("body");
 		this.example  = (String) levelData.get("example");
-		this.wordsToRemove = (String) levelData.get("remove");
-		this.body = new VBox();
-		body.setSpacing(15);
-		initElements();
+	}
+	
+	// Detect what mechanic is specified in the JSON file
+	// Then load that mechanic
+	private void addMechanic() {
+		Mechanic m = null;
+		if (levelData.containsKey("remove")) {
+			m = new DragAndDrop(example, (String) levelData.get("remove"));
+		} 
+		
+		else if (levelData.containsKey("move")) {
+			m = new Move((JSONObject)levelData.get("move"));
+		}
+		if (m != null)
+			body.getChildren().add(m.create());
 	}
 
 	@Override
 	protected void initElements() {
 		createTitleBar(title);
 		createBody();
-
+		
+		body.setSpacing(15);
 		body.setPadding(new Insets(20));
 		body.getStyleClass().add("level-body");
 		
@@ -49,12 +73,8 @@ public class Level extends SubScene {
 		scroll.setFitToHeight(true);
 		scroll.getStyleClass().add("scroll-pane");
 		
+		// ScrollPane as root to fit all elements
 		setRoot(scroll);
-		if (wordsToRemove != null) {
-			DragAndDrop drag = new DragAndDrop(example, wordsToRemove.split(","));
-			body.getChildren().add(drag.create());
-		}
-		
 		
 		getRoot().getChildren().addAll(body);
 	}

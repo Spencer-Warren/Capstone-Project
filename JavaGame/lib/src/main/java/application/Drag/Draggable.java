@@ -13,9 +13,15 @@ import javafx.scene.input.TransferMode;
 public class Draggable extends Label {
 	private String correctWord;
 	private String originalWord;
+	private boolean willMove;
 	private boolean isEmpty;
+	
+	public Draggable(String originalWord) {
+		this(originalWord, null, false);
+	}
 
-	public Draggable(String originalWord, String correctWord) {
+
+	public Draggable(String originalWord, String correctWord, boolean willMove) {
 		super();
 		this.originalWord = originalWord;
 		this.correctWord = correctWord;
