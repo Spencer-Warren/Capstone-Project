@@ -12,12 +12,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class DragAndDrop implements Mechanic{
+public class DragAndDrop extends Mechanic {
 	private VBox root;
 	private VBox wrapper;
 	private String fullExample;
 	private List<String> wordsToRemove;
 	private List<Draggable> blanks;
+	private List<Draggable> wordDrags;
 
 	public DragAndDrop(String example, String wordsToRemove) {
 		this.fullExample = example;
@@ -34,80 +35,90 @@ public class DragAndDrop implements Mechanic{
 		blanks = new ArrayList<>();
 	}
 
+	// Given the words we got from the JSON file
+	// Take out the words and create blank spaces in their place
 	private List<String> takeOutWords() {
 		List<String> lines = List.of(fullExample.split("\r\n"));
 		List<String> words = new ArrayList<>();
 
 		for (String line : lines) {
+			// We need an HBox to add the draggable objects
 			HBox row = new HBox();
 			for (String word : line.split(" ")) {
+				// if we run into a word we need to remove
 				if (wordsToRemove.contains(word)) {
 					wordsToRemove.remove(word);
+					// Create an empty draggable
+					// but give it the correct word
+					// so we can check it later
 					Draggable emptyDrag = new Draggable(null, word, false);
+					// add draggable to list for resetting later
 					blanks.add(emptyDrag);
+					// add to a list so we can create the
+					// draggables with the words at the bottom
 					words.add(word);
 
 					row.getChildren().add(emptyDrag);
 				} else {
+					// else just add the word to the row
 					Text temp = new Text(word + " ");
 					temp.getStyleClass().add("drag");
 					row.getChildren().add(temp);
 				}
 			}
-
 			root.getChildren().add(row);
 		}
 		return words;
 	}
 
-	private void addWordDrags(List<String> words) {
-		List<Draggable> wordDrags = words.stream().map(Draggable::new).toList();
+	private HBox addWordDrags() {
 		// Add all words weve taken out
 		HBox wordsBlock = new HBox();
 		wordsBlock.setSpacing(15);
 		wordsBlock.getStyleClass().add("drag-box");
 		wordsBlock.getChildren().addAll(wordDrags);
 
-		HBox gradingBar = new HBox();
-		Label grade = new Label();
-		Button reset = new Button("Reset");
-		Button check = new Button("Check");
-
-		gradingBar.setSpacing(10);
-		gradingBar.getChildren().addAll(reset, check, grade);
-
-		reset.setOnAction((ActionEvent a) -> {
-			for (Draggable d : blanks) {
-				d.reset();
-			}
-			for (Draggable d : wordDrags) {
-				d.reset();
-			}
-		});
-
-		check.setOnAction((ActionEvent a) -> {
-			if (isCorrect()) {
-				grade.setText("Correct!");
-			} else {
-				grade.setText("Try Again!");
-			}
-		});
-
-		root.getChildren().addAll(wordsBlock, gradingBar);
+		return wordsBlock;
 	}
 
 	public VBox create() {
+		// take out all the words
 		List<String> words = takeOutWords();
-		addWordDrags(words);
+		
+		// stream all the words that weve taken out to new draggables to add
+		wordDrags = words.stream().map(Draggable::new).toList();
+
+		// add the created draggables
+		HBox wordsBlock = addWordDrags();
+
+		// use the mechanic class method
+		HBox gradingBar = makeGradeBar();
+
+		// add all the things
+		root.getChildren().addAll(wordsBlock, gradingBar);
+
+		// return the wrapper so we can add it to a scene
 		return wrapper;
 	}
 
-	public boolean isCorrect() {
+	@Override
+	protected boolean isCorrect() {
 		for (Draggable d : blanks) {
 			if (!d.isCorrect())
 				return false;
 		}
 		return true;
+	}
+
+	@Override
+	protected void reset() {
+		for (Draggable d : blanks) {
+			d.reset();
+		}
+		for (Draggable d : wordDrags) {
+			d.reset();
+		}
+
 	}
 
 }

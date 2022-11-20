@@ -16,7 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class Move implements Mechanic {
+public class Move extends Mechanic {
 	private BorderPane root;
 	private VBox wrapper;
 	private JSONObject rightWrong;
@@ -29,7 +29,6 @@ public class Move implements Mechanic {
 		wrapper = new VBox(root);
 		wrapper.setAlignment(Pos.CENTER);
 		wrapper.setFillWidth(false);
-		blanks = new ArrayList<>();
 
 		root.getStyleClass().add("drag-root");
 	}
@@ -47,13 +46,20 @@ public class Move implements Mechanic {
 		}
 	}
 	
-	
-	private boolean isCorrect() {
+	@Override
+	protected boolean isCorrect() {
 		for (Draggable d : destinations) {
 			if (!d.isCorrect())
 				return false;
 		}
 		return true;
 	}
+
+	@Override
+	protected void reset() {
+		
+	}
+
+
 
 }
