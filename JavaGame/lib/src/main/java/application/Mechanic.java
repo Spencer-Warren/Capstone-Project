@@ -25,14 +25,11 @@ public abstract class Mechanic {
 		gradingBar.getChildren().addAll(reset, check, grade);
 
 		reset.setOnAction((ActionEvent a) -> reset());
-
-		check.setOnAction((ActionEvent a) -> {
-			if (isCorrect()) {
-				grade.setText("Correct!");
-			} else {
-				grade.setText("Try Again!");
-			}
-		});
+		
+		// Will Probably expand later
+		check.setOnAction((ActionEvent a) -> 
+			grade.setText(isCorrect() ? "Correct!" : "Try Again!")
+		);
 
 		return gradingBar;
 	}

@@ -9,15 +9,22 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.Region;
 
 public class Draggable extends Label {
 	private String correctWord;
 	private String originalWord;
+	private int spaces;
 	private boolean willMove;
 	private boolean isEmpty;
 	
+	// overload
 	public Draggable(String originalWord) {
 		this(originalWord, null, false);
+	}
+	// overload
+	public Draggable(String originalWord, boolean willMove) {
+		this(originalWord, null, willMove);
 	}
 
 
@@ -25,7 +32,9 @@ public class Draggable extends Label {
 		super();
 		this.originalWord = originalWord;
 		this.correctWord = correctWord;
-		setPrefSize(70, 10);
+		spaces = -1;
+//		setMinSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
+//		setPrefSize(70, 10);
 		setAlignment(Pos.CENTER);
 		getStyleClass().add("drag");
 
@@ -37,6 +46,7 @@ public class Draggable extends Label {
 	public void reset() {
 		if (originalWord == null) {
 			empty();
+			if (spaces > 0) setSpaces();
 		} else {
 			set(originalWord);
 		}
@@ -59,26 +69,32 @@ public class Draggable extends Label {
 		getStyleClass().remove("drag-empty");
 		isEmpty = false;
 	}
-
+	
+	// Initialize all the mouse events
 	private void init() {
-
+		
+		// called when you try to drag
 		setOnDragDetected((MouseEvent event) -> {
-			if (!isEmpty) {
-				System.out.println("Dragging...");
+			if (!isEmpty) { // cant drag empty ones
+//				System.out.println("Dragging...");
 				Dragboard db = startDragAndDrop(TransferMode.ANY);
+				
+				// clipboard to copy string
 				ClipboardContent content = new ClipboardContent();
 				content.putString(getText());
 				db.setContent(content);
-
+				
+				// Snapshot to have a view when you drag it
 				WritableImage snapshot = snapshot(new SnapshotParameters(), null);
 				db.setDragView(snapshot);
 			}
 
 			event.consume();
 		});
-
+		
 		setOnMouseDragged((MouseEvent event) -> event.setDragDetect(true));
 
+		// make sure we arent dragging to the same node
 		setOnDragOver((DragEvent event) -> {
 			if (event.getGestureSource() != this && event.getDragboard().hasString()) {
 				event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
@@ -86,12 +102,17 @@ public class Draggable extends Label {
 			event.consume();
 		});
 
+		// Called when you drag something into this node
 		setOnDragDropped((DragEvent event) -> {
+			// get the info
 			Dragboard db = event.getDragboard();
+			// check contents and if this node is empty
 			if (db.hasString() && isEmpty) {
-				System.out.println("Dropped: " + db.getString());
+//				System.out.println("Dropped: " + db.getString());
+				// Paste string into this node
 				set(db.getString());
-
+				
+				// empty the source node
 				Draggable source = (Draggable) event.getGestureSource();
 				source.empty();
 
@@ -103,8 +124,21 @@ public class Draggable extends Label {
 		});
 
 	}
-
+	
+	// Check if the set word is the correct one
 	public boolean isCorrect() {
 		return getText().equals(correctWord);
+	}
+	
+	public void setSpaceString(int spaces) {
+		this.spaces = spaces;
+		setSpaces();
+	}
+	
+	private void setSpaces() {
+		String format = "\"%-" + spaces + "s\"";
+		System.out.println(format);
+		String spaces = String.format(format, " ");
+		setText(spaces);
 	}
 }
