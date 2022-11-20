@@ -33,8 +33,9 @@ public class Draggable extends Label {
 		this.originalWord = originalWord;
 		this.correctWord = correctWord;
 		spaces = -1;
-//		setMinSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
-//		setPrefSize(70, 10);
+		setMinHeight(30);
+		setPrefHeight(USE_COMPUTED_SIZE);
+		setMinWidth(70);
 		setAlignment(Pos.CENTER);
 		getStyleClass().add("drag");
 
@@ -46,7 +47,6 @@ public class Draggable extends Label {
 	public void reset() {
 		if (originalWord == null) {
 			empty();
-			if (spaces > 0) setSpaces();
 		} else {
 			set(originalWord);
 		}
@@ -128,17 +128,5 @@ public class Draggable extends Label {
 	// Check if the set word is the correct one
 	public boolean isCorrect() {
 		return getText().equals(correctWord);
-	}
-	
-	public void setSpaceString(int spaces) {
-		this.spaces = spaces;
-		setSpaces();
-	}
-	
-	private void setSpaces() {
-		String format = "\"%-" + spaces + "s\"";
-		System.out.println(format);
-		String spaces = String.format(format, " ");
-		setText(spaces);
 	}
 }

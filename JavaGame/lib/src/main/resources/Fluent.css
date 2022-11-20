@@ -109,3 +109,10 @@
 	-fx-padding: 10.0px;
 }
 
+.move-dest {
+	-fx-padding: 10.0px;
+}
+
+.move-instructions {
+	-fx-font-size: 10.0px;
+}
