@@ -1,4 +1,4 @@
-package application.Drag;
+package application.drag;
 
 import javafx.geometry.Pos;
 import javafx.scene.SnapshotParameters;

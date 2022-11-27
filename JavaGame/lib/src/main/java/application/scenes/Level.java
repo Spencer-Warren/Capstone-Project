@@ -1,10 +1,10 @@
-package application.Scenes;
+package application.scenes;
 
 import org.json.simple.JSONObject;
 
 import application.Mechanic;
-import application.Drag.DragAndDrop;
 import application.Move.Move;
+import application.drag.DragAndDrop;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;

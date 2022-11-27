@@ -1,4 +1,4 @@
-package application.Drag;
+package application.drag;
 
 import java.util.ArrayList;
 import java.util.List;

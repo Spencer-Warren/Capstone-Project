@@ -1,4 +1,4 @@
-package application.Scenes;
+package application.scenes;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;

@@ -1,4 +1,4 @@
-package application.Scenes;
+package application.scenes;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;

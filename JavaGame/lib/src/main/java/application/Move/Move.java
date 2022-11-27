@@ -7,7 +7,7 @@ import java.util.List;
 import org.json.simple.JSONObject;
 
 import application.Mechanic;
-import application.Drag.Draggable;
+import application.drag.Draggable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;

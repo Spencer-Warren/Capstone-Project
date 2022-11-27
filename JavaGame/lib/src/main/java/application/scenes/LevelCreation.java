@@ -1,4 +1,4 @@
-package application.Scenes;
+package application.scenes;
 
 import java.io.File;
 import java.io.FileReader;
