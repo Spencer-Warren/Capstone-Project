@@ -42,7 +42,7 @@ public class Move extends Mechanic {
 		wrapper.setFillWidth(false);
 
 		root.setAlignment(Pos.CENTER);
-		root.getStyleClass().add("drag-root");
+		root.getStyleClass().add("mechanic-root");
 	}
 
 	public VBox create() {

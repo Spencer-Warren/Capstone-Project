@@ -21,8 +21,13 @@
 	{
 		"3": {
 			"title": "Comments",
-			"body": "Comments are created for any who reads code, whether that be the person who wrote that code or anyone else. It helps explain what blocks of code do, why the coder used a specific method or to increase the readability of code by splitting up code statements.\r\n\r\nHere are some single line comments:\r\n```java\r\n\t\/\/ Print out hello world\r\n\tSystem.out.println(\"Hello World!\");\r\n```\r\nYou can even put them on the same line as a statement\r\n```java\r\n\tSystem.out.println(\"Hello World!\"); \/\/ Print out hello world\r\n```\r\n\r\nIf you need to write a longer comment you can use multi-line comments. To do this we use \/* to start the comment and *\/ to end it. All the text in these brackets will be ignored.\r\n\r\n```java\r\n\/* This is a longer form comment \r\nbecause I have a long explanation \r\nor a lot to say *\/\r\nSystem.out.println(\"Hello World\");\r\n```\r\n",
-			"example": "this example"
+			"body": "Comments are created for any who reads code, whether that be the person who wrote that code or anyone else.\r\nIt helps explain what blocks of code do, why the coder used a specific method or to increase the readability of code by splitting up code statements.\r\n\r\nHere are some single line comments:\r\n```java\r\n\t\/\/ Print out hello world\r\n\tSystem.out.println(\"Hello World!\");\r\n```\r\nYou can even put them on the same line as a statement\r\n```java\r\n\tSystem.out.println(\"Hello World!\"); \/\/ Print out hello world\r\n```\r\n\r\nIf you need to write a longer comment you can use multi-line comments. To do this we use \/* to start the comment and *\/ to end it. All the text in these brackets will be ignored.\r\n\r\n```java\r\n\/* This is a longer form comment \r\nbecause I have a long explanation \r\nor a lot to say *\/\r\nSystem.out.println(\"Hello World\");\r\n```\r\n",
+			"example": "int x = 10;\r\n\/\/ Print out varible for debug\r\nSystem.out.println(x);\r\n\r\nstatic int DEFAULT_HEIGHT = 10;\r\n\/*\r\n The default height of the square needs to stay constant\r\n Because of the transformations applied later in the program\r\n*\/\r\nSystem.out.println(\"height constant: \" + DEFAULT_HEIGHT);",
+			"choice" : {
+					"question" : "Which two of the following comments is formatted correctly?",
+					"correct" : "\/\/ This is a comment,\\* this is another comment *\\,\\* a different comment *\\, \\*\r\n* This is a \r\n* super long\r\n* comment\r\n*\\,\r\n\/\/ FIXME, \/\/ TODO: init method",
+					"incorrect": "\/ More comments, \\\\ Comment on comments, \\* \r\n* Long comment \r\n* about why this code \r\n* seems to do nothing\r\n* but is essential\r\n*\/, \/* Tonys pizza is a nice place to eat lunch *\/\/"
+			}
 		}
 	},
 	{

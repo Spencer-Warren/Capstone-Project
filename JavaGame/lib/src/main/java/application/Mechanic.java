@@ -13,7 +13,13 @@ public abstract class Mechanic {
 	protected abstract void reset();
 
 	protected abstract boolean isCorrect();
-
+	
+	/*
+	 * Create reset and check buttons
+	 * and functionality 
+	 * 
+	 * @return VBox with created buttons and grade label
+	 */
 	protected HBox makeGradeBar() {
 
 		HBox gradingBar = new HBox();

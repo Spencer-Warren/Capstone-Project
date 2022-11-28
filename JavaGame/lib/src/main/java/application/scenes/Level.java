@@ -5,6 +5,7 @@ import org.json.simple.JSONObject;
 import application.Mechanic;
 import application.Move.Move;
 import application.drag.DragAndDrop;
+import application.multiplechoice.*;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -53,6 +54,12 @@ public class Level extends SubScene {
 		else if (levelData.containsKey("move")) {
 			m = new Move((JSONObject)levelData.get("move"));
 		}
+		
+		else if (levelData.containsKey("choice")) {
+			m = new MultipleChoice((JSONObject) levelData.get("choice"));
+			
+		}
+		
 		if (m != null)
 			body.getChildren().add(m.create());
 	}

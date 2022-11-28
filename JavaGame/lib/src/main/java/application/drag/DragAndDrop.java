@@ -25,7 +25,7 @@ public class DragAndDrop extends Mechanic {
 		this.wordsToRemove = new ArrayList<>(List.of(wordsToRemove.split(",")));
 
 		root = new VBox();
-		root.getStyleClass().add("drag-root");
+		root.getStyleClass().add("mechnic-root");
 		root.setAlignment(Pos.CENTER);
 
 		wrapper = new VBox(root);
