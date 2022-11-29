@@ -22,6 +22,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class Level extends SubScene {
+	private int levelNumber;
 	private JSONObject levelData;
 	private String title;
 	private String bodyText;
@@ -29,54 +30,49 @@ public class Level extends SubScene {
 	private VBox body;
 	private Mechanic mechanic;
 
-	public Level(Stage stage, DefaultScene subScene, JSONObject levelData) {
+	public Level(Stage stage, DefaultScene subScene, int levelNumber, JSONObject levelData) {
 		super(stage, new VBox(), subScene);
 		this.levelData = levelData;
 		this.body = new VBox();
-		
+		this.levelNumber = levelNumber;
+
 		convertJSON();
 		initElements();
 		addMechanic();
 	}
-	
-	public Level(Stage stage, DefaultScene subScene, JSONObject levelData, Mechanic m) {
-		this(stage, subScene, levelData);
-		mechanic = m;
-		body.getChildren().add(mechanic.getWrapper());
-	}
-	
+
 	public Mechanic getMechanic() {
 		return mechanic;
 	}
-	
+
+	public int getLevelNumber() {
+		return levelNumber;
+	}
+
 	// Save strings gotten from JSON file
 	private void convertJSON() {
-		this.title    = (String) levelData.get("title");
+		this.title = (String) levelData.get("title");
 		this.bodyText = (String) levelData.get("body");
-		this.example  = (String) levelData.get("example");
+		this.example = (String) levelData.get("example");
 	}
-	
+
 	// Detect what mechanic is specified in the JSON file
 	// Then load that mechanic
 	private void addMechanic() {
-		// If we've already loaded the state of the mechanic dont create 
-		if (mechanic != null) {
-			return;
-		}
-		
+
 		if (levelData.containsKey("remove")) {
 			mechanic = new DragAndDrop(example, (String) levelData.get("remove"));
-		} 
-		
-		else if (levelData.containsKey("move")) {
-			mechanic = new Move((JSONObject)levelData.get("move"));
 		}
-		
+
+		else if (levelData.containsKey("move")) {
+			mechanic = new Move((JSONObject) levelData.get("move"));
+		}
+
 		else if (levelData.containsKey("choice")) {
 			mechanic = new MultipleChoice((JSONObject) levelData.get("choice"));
-			
+
 		}
-		
+
 		if (mechanic != null)
 			body.getChildren().add(mechanic.create());
 	}
@@ -85,21 +81,21 @@ public class Level extends SubScene {
 	protected void initElements() {
 		createTitleBar(title);
 		createBody();
-		
+
 		body.setSpacing(15);
 		body.setPadding(new Insets(20));
 		body.getStyleClass().add("level-body");
-		
+
 		// not sure if ill use a scroll pane yet
 		ScrollPane scroll = new ScrollPane();
 		scroll.setContent(getRoot());
 		scroll.setFitToWidth(true);
 		scroll.setFitToHeight(true);
 		scroll.getStyleClass().add("scroll-pane");
-		
+
 		// ScrollPane as root to fit all elements
 		setRoot(scroll);
-		
+
 		getRoot().getChildren().addAll(body);
 	}
 
@@ -110,42 +106,42 @@ public class Level extends SubScene {
 		boolean isCode = false;
 		StringBuilder codeString = new StringBuilder();
 		StringBuilder textString = new StringBuilder();
-		
+
 		for (String line : lines) {
 			if (line.startsWith("```") && !line.contains("java")) {
 				addToBody(codeString, true);
 				isCode = false;
 			}
-			
+
 			else if (isCode) {
 				codeString.append(line);
 			}
-			
+
 			else if (line.startsWith("```java")) {
 				addToBody(textString, false);
 				isCode = true;
 			}
-			
+
 			else {
 				textString.append(line);
 			}
 
 		}
-		
+
 		addToBody(new StringBuilder("Example:"), false);
 		addToBody(new StringBuilder(example), true);
 
 	}
-	
+
 	private void addToBody(StringBuilder text, boolean isCode) {
-		
+
 		Label block = new Label(text.toString().trim());
 		text.setLength(0); // clear string builder
 		block.getStyleClass().add(isCode ? "code-block" : "text-block");
-		
+
 		// Use the computed height to display all code in blocks
 		block.setMinHeight(Region.USE_PREF_SIZE);
-		
+
 		body.getChildren().add(block);
 	}
 

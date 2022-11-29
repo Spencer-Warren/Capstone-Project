@@ -1,5 +1,7 @@
 package application.multiplechoice;
 
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,9 +15,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
-public class MultipleChoice extends Mechanic implements Serializable {
+public class MultipleChoice extends Mechanic {
 
-	private static final long serialVersionUID = 6183555903346186051L;
 	private VBox root;
 	private VBox wrapper;
 
@@ -97,7 +98,14 @@ public class MultipleChoice extends Mechanic implements Serializable {
 	}
 
 	@Override
-	public VBox getWrapper() {
-		return wrapper;
+	public void save(ObjectOutputStream out) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void load(ObjectInputStream in) {
+		// TODO Auto-generated method stub
+		
 	}
 }

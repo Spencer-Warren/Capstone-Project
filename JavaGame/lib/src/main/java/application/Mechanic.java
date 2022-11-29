@@ -1,5 +1,8 @@
 package application;
 
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,8 +12,10 @@ import javafx.scene.layout.VBox;
 public abstract class Mechanic {
 
 	public abstract VBox create();
+		
+	public abstract void save(ObjectOutputStream out);
 	
-	public abstract VBox getWrapper();
+	public abstract void load(ObjectInputStream in);
 
 	protected abstract void reset();
 

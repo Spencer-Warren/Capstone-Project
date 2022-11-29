@@ -1,5 +1,7 @@
 package application.Move;
 
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,7 +17,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class Move extends Mechanic {
-
 	private VBox root;
 	private VBox wrapper;
 
@@ -137,8 +138,14 @@ public class Move extends Mechanic {
 	}
 
 	@Override
-	public VBox getWrapper() {
-		return wrapper;
+	public void save(ObjectOutputStream out) {
+		// TODO Auto-generated method stub
+		
 	}
 
+	@Override
+	public void load(ObjectInputStream in) {
+		// TODO Auto-generated method stub
+		
+	}
 }

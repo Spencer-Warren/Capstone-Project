@@ -16,6 +16,7 @@ public class Main extends Application {
 	private AboutScene aboutScene;
 	private Stage stage;
 	private List<Level> levels;
+	private LevelCreation levelCreation;
 
 	@Override
 	public void start(Stage stage) {
@@ -32,7 +33,8 @@ public class Main extends Application {
 	// initialize scenes and bind buttons
 	// Load order is very important
 	private void initScenes() {
-		levels = new LevelCreation().initLevels(stage, levelSelectScene);
+		levelCreation = new LevelCreation();
+		levels = levelCreation.initLevels(stage, levelSelectScene);
 		mainMenu = new MainMenuScene(stage);
 		levelSelectScene = new LevelSelectionScene(stage, mainMenu, levels);
 		aboutScene = new AboutScene(stage, mainMenu);
@@ -46,8 +48,12 @@ public class Main extends Application {
 			l.bindButtons(levelSelectScene);
 		}
 	}
+	// Save level states on close
+	@Override
+	public void stop() {
+		levelCreation.save();
+	}
 
-	
 	public static void main(String[] args) {
 		launch(args);
 	}

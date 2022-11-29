@@ -1,5 +1,8 @@
 package application.drag;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +54,7 @@ public class DragAndDrop extends Mechanic {
 					// Create an empty draggable
 					// but give it the correct word
 					// so we can check it later
-					Draggable emptyDrag = new Draggable(null, word, false);
+					Draggable emptyDrag = new Draggable(Draggable.EMPTY_WORD, word, false);
 					// add draggable to list for resetting later
 					blanks.add(emptyDrag);
 					// add to a list so we can create the
@@ -84,7 +87,7 @@ public class DragAndDrop extends Mechanic {
 	public VBox create() {
 		// take out all the words
 		List<String> words = takeOutWords();
-		
+
 		// stream all the words that weve taken out to new draggables to add
 		wordDrags = words.stream().map(Draggable::new).toList();
 
@@ -118,11 +121,36 @@ public class DragAndDrop extends Mechanic {
 		for (Draggable d : wordDrags) {
 			d.reset();
 		}
+	}
 
+	public VBox getWrapper() {
+		return wrapper;
 	}
 
 	@Override
-	public VBox getWrapper() {
-		return wrapper;
+	public void save(ObjectOutputStream out) {
+		for (Draggable d : blanks) {
+			d.write(out);
+		}
+		for (Draggable d : wordDrags) {
+			d.write(out);
+		}
+	}
+
+	@Override
+	public void load(ObjectInputStream in) {
+		int i = 1;
+		try {
+			for (Draggable d : blanks) {
+				System.out.println(i++);
+				d.read(in);
+			}
+			for (Draggable d : wordDrags) {
+				System.out.println(i++);
+				d.read(in);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
