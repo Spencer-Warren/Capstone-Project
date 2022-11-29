@@ -1,4 +1,4 @@
-package application.scenes;
+package application.level;
 
 import java.io.File;
 import java.io.FileReader;
@@ -9,6 +9,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import application.scenes.LevelSelectionScene;
 import javafx.stage.Stage;
 
 public class LevelCreation {

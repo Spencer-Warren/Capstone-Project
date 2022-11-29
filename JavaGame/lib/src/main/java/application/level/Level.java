@@ -1,4 +1,4 @@
-package application.scenes;
+package application.level;
 
 import org.json.simple.JSONObject;
 
@@ -6,6 +6,8 @@ import application.Mechanic;
 import application.Move.Move;
 import application.drag.DragAndDrop;
 import application.multiplechoice.*;
+import application.scenes.DefaultScene;
+import application.scenes.SubScene;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -25,6 +27,7 @@ public class Level extends SubScene {
 	private String bodyText;
 	private String example;
 	private VBox body;
+	private Mechanic mechanic;
 
 	public Level(Stage stage, DefaultScene subScene, JSONObject levelData) {
 		super(stage, new VBox(), subScene);
@@ -34,6 +37,10 @@ public class Level extends SubScene {
 		convertJSON();
 		initElements();
 		addMechanic();
+	}
+	
+	public Mechanic getMechanic() {
+		return mechanic;
 	}
 	
 	// Save strings gotten from JSON file
@@ -46,22 +53,21 @@ public class Level extends SubScene {
 	// Detect what mechanic is specified in the JSON file
 	// Then load that mechanic
 	private void addMechanic() {
-		Mechanic m = null;
 		if (levelData.containsKey("remove")) {
-			m = new DragAndDrop(example, (String) levelData.get("remove"));
+			mechanic = new DragAndDrop(example, (String) levelData.get("remove"));
 		} 
 		
 		else if (levelData.containsKey("move")) {
-			m = new Move((JSONObject)levelData.get("move"));
+			mechanic = new Move((JSONObject)levelData.get("move"));
 		}
 		
 		else if (levelData.containsKey("choice")) {
-			m = new MultipleChoice((JSONObject) levelData.get("choice"));
+			mechanic = new MultipleChoice((JSONObject) levelData.get("choice"));
 			
 		}
 		
-		if (m != null)
-			body.getChildren().add(m.create());
+		if (mechanic != null)
+			body.getChildren().add(mechanic.create());
 	}
 
 	@Override

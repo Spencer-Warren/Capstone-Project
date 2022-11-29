@@ -3,6 +3,7 @@ package application.scenes;
 import java.util.List;
 
 import application.DefaultProperties;
+import application.level.Level;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;

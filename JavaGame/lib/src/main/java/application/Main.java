@@ -2,9 +2,9 @@ package application;
 
 import java.util.List;
 
+import application.level.Level;
+import application.level.LevelCreation;
 import application.scenes.AboutScene;
-import application.scenes.Level;
-import application.scenes.LevelCreation;
 import application.scenes.LevelSelectionScene;
 import application.scenes.MainMenuScene;
 import javafx.application.Application;
