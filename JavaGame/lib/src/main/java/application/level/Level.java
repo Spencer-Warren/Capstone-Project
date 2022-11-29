@@ -3,8 +3,8 @@ package application.level;
 import org.json.simple.JSONObject;
 
 import application.Mechanic;
-import application.Move.Move;
 import application.drag.DragAndDrop;
+import application.move.Move;
 import application.multiplechoice.*;
 import application.scenes.DefaultScene;
 import application.scenes.SubScene;

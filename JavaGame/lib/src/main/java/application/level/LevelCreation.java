@@ -7,27 +7,25 @@ import java.io.FileReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import application.Mechanic;
 import application.scenes.LevelSelectionScene;
 import javafx.stage.Stage;
 
 public class LevelCreation {
+	// Path to the state file
+	private static final String STATE_PATH = "src/main/resources/states.txt";
 	private List<Level> levels;
 	private JSONArray levelList;
-	private HashMap<Integer, Mechanic> mechanicStates;
 
 	public LevelCreation() {
 		levels = new ArrayList<>();
-		mechanicStates = new HashMap<>();
 	}
-	
+
 	public void save() {
 		pushMechanicStates();
 	}
@@ -60,53 +58,47 @@ public class LevelCreation {
 		try (FileReader inFile = new FileReader(file);) {
 			JSONParser jsonIn = new JSONParser();
 			levelList = (JSONArray) jsonIn.parse(inFile);
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	private void pullMechanicStates() {
-		try {
-			ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/main/resources/states.txt"));
+		try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(STATE_PATH));) {
+			// Don't try to load a file that doesn't exist
+			File fin = new File(STATE_PATH);
+			if (!fin.exists()) {
+				return;
+			}
+
 			int numToRead = in.readInt();
 			int levelNum;
-			Mechanic temp;
-			for(int i = 0; i < numToRead; i++) {
+			for (int i = 0; i < numToRead; i++) {
 				levelNum = in.readInt();
-				System.out.println("Level: " + levelNum);
 				Level l = levels.get(levelNum - 1);
-				if(l.getMechanic()!=null) {
-				l.getMechanic().load(in);
+				if (l.getMechanic() != null) {
+					l.getMechanic().load(in);
 				}
 			}
-			in.close();
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void pushMechanicStates() {
-		try {
-			FileOutputStream fout = new FileOutputStream("src/main/resources/states.txt");
-			ObjectOutputStream out = new ObjectOutputStream(fout);
+		try (FileOutputStream fout = new FileOutputStream(STATE_PATH);
+				ObjectOutputStream out = new ObjectOutputStream(fout)) {
+
 			out.writeInt(levels.size());
-			System.out.println(levels.size());
-			for(Level l : levels) {
-				System.out.println("Level: " + l.getLevelNumber());
-//				if(l.getMechanic() == null) continue;
+			for (Level l : levels) {
 				out.writeInt(l.getLevelNumber());
-				if(l.getMechanic()!=null) {
+				if (l.getMechanic() != null) {
 					l.getMechanic().save(out);
 				}
 			}
-			out.close();
-		}
-		
-		catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	
 	}
 }

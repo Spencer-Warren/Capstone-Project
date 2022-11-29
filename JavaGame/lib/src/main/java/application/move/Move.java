@@ -1,4 +1,4 @@
-package application.Move;
+package application.move;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -139,13 +139,21 @@ public class Move extends Mechanic {
 
 	@Override
 	public void save(ObjectOutputStream out) {
-		// TODO Auto-generated method stub
-		
+		for (Draggable d : options) {
+			d.write(out);
+		}
+		for (Draggable d : destinations) {
+			d.write(out);
+		}
 	}
 
 	@Override
 	public void load(ObjectInputStream in) {
-		// TODO Auto-generated method stub
-		
+		for (Draggable d : options) {
+			d.read(in);
+		}
+		for (Draggable d : destinations) {
+			d.read(in);
+		}
 	}
 }

@@ -1,16 +1,12 @@
 package application.drag;
 
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import application.Mechanic;
-import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -139,14 +135,11 @@ public class DragAndDrop extends Mechanic {
 
 	@Override
 	public void load(ObjectInputStream in) {
-		int i = 1;
 		try {
 			for (Draggable d : blanks) {
-				System.out.println(i++);
 				d.read(in);
 			}
 			for (Draggable d : wordDrags) {
-				System.out.println(i++);
 				d.read(in);
 			}
 		} catch (Exception e) {
