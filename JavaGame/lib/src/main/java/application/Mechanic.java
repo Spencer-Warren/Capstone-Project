@@ -9,10 +9,13 @@ import javafx.scene.layout.VBox;
 public abstract class Mechanic {
 
 	public abstract VBox create();
+	
+	public abstract VBox getWrapper();
 
 	protected abstract void reset();
 
 	protected abstract boolean isCorrect();
+	
 	
 	/*
 	 * Create reset and check buttons

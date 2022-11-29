@@ -39,6 +39,12 @@ public class Level extends SubScene {
 		addMechanic();
 	}
 	
+	public Level(Stage stage, DefaultScene subScene, JSONObject levelData, Mechanic m) {
+		this(stage, subScene, levelData);
+		mechanic = m;
+		body.getChildren().add(mechanic.getWrapper());
+	}
+	
 	public Mechanic getMechanic() {
 		return mechanic;
 	}
@@ -53,6 +59,11 @@ public class Level extends SubScene {
 	// Detect what mechanic is specified in the JSON file
 	// Then load that mechanic
 	private void addMechanic() {
+		// If we've already loaded the state of the mechanic dont create 
+		if (mechanic != null) {
+			return;
+		}
+		
 		if (levelData.containsKey("remove")) {
 			mechanic = new DragAndDrop(example, (String) levelData.get("remove"));
 		} 

@@ -136,4 +136,9 @@ public class Move extends Mechanic {
 		}
 	}
 
+	@Override
+	public VBox getWrapper() {
+		return wrapper;
+	}
+
 }
