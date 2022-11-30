@@ -27,6 +27,9 @@ public class Move extends Mechanic {
 	private List<Draggable> destinations;
 
 	private int minWidth;
+	
+	// Number of rights and wrongs
+	private static int numEach = 3;
 
 	public Move(JSONObject rightWrong) {
 
@@ -71,14 +74,21 @@ public class Move extends Mechanic {
 
 		String rights = (String) rightWrongJSON.get("correct");
 		correctStrings = List.of(rights.split(","));
-		for (String right : rights.split(",")) {
+		correctStrings = new ArrayList<>(correctStrings);
+		Collections.shuffle(correctStrings);
+		
+		for (int i = 0; i < numEach; i++) {
+			String right = correctStrings.get(i);
 			temp = new Draggable(right, true);
 			options.add(temp);
 			minWidth = minWidth < right.length() ? right.length() : minWidth;
 		}
 
 		String wrongs = (String) rightWrongJSON.get("incorrect");
-		for (String wrong : wrongs.split(",")) {
+		List<String> wrongStrings = new ArrayList<>(List.of(wrongs.split(",")));
+		Collections.shuffle(wrongStrings);
+		for (int i = 0; i < numEach; i++) {
+			String wrong = wrongStrings.get(i);
 			temp = new Draggable(wrong, true);
 			options.add(temp);
 			minWidth = minWidth < wrong.length() ? minWidth : wrong.length();
@@ -100,8 +110,8 @@ public class Move extends Mechanic {
 		destinationBox.setMinWidth(300);
 		destinationBox.getStyleClass().add("move-dest");
 
-		for (String word : correctStrings) {
-			temp = new Draggable(null, word, false);
+		for (int i = 0; i < numEach; i++) {
+			temp = new Draggable(null, "", false);
 			destinations.add(temp);
 		}
 
@@ -119,11 +129,7 @@ public class Move extends Mechanic {
 
 	@Override
 	protected boolean isCorrect() {
-		for (Draggable d : destinations) {
-			if (!correctStrings.contains(d.getText()))
-				return false;
-		}
-		return true;
+		return getCurrentScore() == destinations.size();
 	}
 
 	@Override
@@ -165,7 +171,7 @@ public class Move extends Mechanic {
 	protected int getCurrentScore() {
 		int score = 0;
 		for (Draggable d : destinations) {
-			if (d.isCorrect()) {
+			if (correctStrings.contains(d.getText())) {
 				score++;
 			}
 		}

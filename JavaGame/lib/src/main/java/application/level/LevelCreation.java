@@ -4,8 +4,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +23,7 @@ import javafx.stage.Stage;
 
 public class LevelCreation {
 	// Path to the state file
-	private static final String STATE_PATH = "src/main/resources/states.txt";
+	private static final String STATE_PATH = "save.txt";
 	private List<Level> levels;
 	private JSONArray levelList;
 
@@ -53,11 +58,9 @@ public class LevelCreation {
 	// We read each levels data in Level
 
 	private void pullFromFile() {
-		File file = new File("src/main/resources/leveldata.json");
-
-		try (FileReader inFile = new FileReader(file);) {
+		try (InputStream inFile = getClass().getResourceAsStream("/leveldata.json");) {
 			JSONParser jsonIn = new JSONParser();
-			levelList = (JSONArray) jsonIn.parse(inFile);
+			levelList = (JSONArray) jsonIn.parse(new InputStreamReader(inFile));
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -65,13 +68,12 @@ public class LevelCreation {
 	}
 
 	private void pullMechanicStates() {
-		// Don't try to load a file that doesn't exist
-		File fin = new File(STATE_PATH);
-		if (!fin.exists()) {
+		
+		if(!new File(STATE_PATH).exists()) {
 			return;
 		}
 		
-		try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(STATE_PATH));) {
+		try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(STATE_PATH))) {
 			int numToRead = in.readInt();
 			int levelNum;
 			for (int i = 0; i < numToRead; i++) {
@@ -87,7 +89,7 @@ public class LevelCreation {
 	}
 
 	private void pushMechanicStates() {
-		try (FileOutputStream fout = new FileOutputStream(STATE_PATH);
+		try (   FileOutputStream fout = new FileOutputStream(STATE_PATH);
 				ObjectOutputStream out = new ObjectOutputStream(fout)) {
 
 			out.writeInt(levels.size());

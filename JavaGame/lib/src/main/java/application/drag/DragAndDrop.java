@@ -3,6 +3,7 @@ package application.drag;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import application.Mechanic;
@@ -77,6 +78,7 @@ public class DragAndDrop extends Mechanic {
 		HBox wordsBlock = new HBox();
 		wordsBlock.setSpacing(15);
 		wordsBlock.getStyleClass().add("drag-box");
+		Collections.shuffle(wordDrags);
 		wordsBlock.getChildren().addAll(wordDrags);
 
 		return wordsBlock;
@@ -88,6 +90,8 @@ public class DragAndDrop extends Mechanic {
 
 		// stream all the words that we've taken out to new draggables to add
 		wordDrags = words.stream().map(Draggable::new).toList();
+		// We want to shuffle these later
+		wordDrags = new ArrayList<>(wordDrags);
 
 		// add the created draggables
 		HBox wordsBlock = addWordDrags();

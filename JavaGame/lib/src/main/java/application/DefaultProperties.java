@@ -1,19 +1,7 @@
 package application;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
-import javafx.geometry.Insets;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
+import java.io.InputStream;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class DefaultProperties {
@@ -27,7 +15,7 @@ public class DefaultProperties {
 	}
 
 	static {
-		Font amiga = DefaultProperties.loadFont("src/main/resources/fonts/Samson.ttf", 40);
+		Font amiga = DefaultProperties.loadFont("/fonts/Samson.ttf", 10);
 	}
 
 	/**
@@ -43,13 +31,8 @@ public class DefaultProperties {
 	}
 
 	public static Font loadFont(String fileName, int size) {
-		try {
-			FileInputStream fileIn = new FileInputStream(new File(fileName));
-			return Font.loadFont(fileIn, size);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		System.out.println("Fail");
-		return null;
+		//URI fileIn = DefaultProperties.class.getClassLoader().getResource(fileName).toURI();
+		InputStream fileIn = DefaultProperties.class.getClassLoader().getResourceAsStream(fileName);
+		return Font.loadFont(fileIn, size);
 	}
 }
