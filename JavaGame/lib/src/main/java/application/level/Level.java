@@ -60,8 +60,8 @@ public class Level extends SubScene {
 	// Then load that mechanic
 	private void addMechanic() {
 
-		if (levelData.containsKey("remove")) {
-			mechanic = new DragAndDrop(example, (String) levelData.get("remove"));
+		if (levelData.containsKey("drag")) {
+			mechanic = new DragAndDrop((JSONObject) levelData.get("drag"));
 		}
 
 		else if (levelData.containsKey("move")) {
@@ -101,9 +101,8 @@ public class Level extends SubScene {
 
 	private void createBody() {
 		/*
-		 * I've delimited code in the JSON to start with ```java
-		 * and end with ``` this lets us detect code blocks 
-		 * and format them accordingly
+		 * I've delimited code in the JSON to start with ```java and end with ``` this
+		 * lets us detect code blocks and format them accordingly
 		 */
 		String[] lines = bodyText.split("\n");
 
@@ -133,12 +132,15 @@ public class Level extends SubScene {
 			}
 
 		}
-		if(!textString.isEmpty()) {
+		
+		if (!textString.isEmpty()) {
 			addToBody(textString, false);
 		}
-
-		addToBody(new StringBuilder("Example:"), false);
-		addToBody(new StringBuilder(example), true);
+		
+		if (example != null) {
+			addToBody(new StringBuilder("Example:"), false);
+			addToBody(new StringBuilder(example), true);
+		}
 
 	}
 

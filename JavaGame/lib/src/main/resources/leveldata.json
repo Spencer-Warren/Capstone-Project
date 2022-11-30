@@ -4,7 +4,10 @@
       "title": "Hello World",
       "body": "Let's start off with a simple program that prints \"Hello World\" to the screen.\nBecause Java is a class-based language, all code must be contained within a class. Here, we've declared a class named \"Main\". \n```java \n public class Main {\n```\nA file's name must match the class name, so Main.java should be the file name.\nAll Java programs must have a main method, which executes all code inside it. Which is declared like so.\n```java\n  public static void main(String[] args) {\n```\nThe given text is printed to the screen using the println() method. You can also notice that code must be contained within the { } brackets, which marks the beginning and end of a block of code. Additionally our one line of code ends with a semicolon which denotes the end of each statement",
       "example": "public class Main {\r\n\tpublic static void main(String[] args) {\r\n\t\tSystem.out.println(\"Hello World\");\r\n\t}\r\n}",
-      "remove": "public,{,static"
+      "drag": {
+      	"main": "public class Main {\r\n\tpublic static void main(String[] args) {\r\n\t\tSystem.out.println(\"Hello World\");\r\n\t}\r\n}",
+      	"remove" : "public,{,static"
+      }
     }
   },
   {
@@ -35,49 +38,54 @@
       "title": "Variables",
       "body": "In Java we use different types of variables to store particular values.\r\n- String: Stores text, like so \"This is some text\" you use double quotes to surround the string\r\n- int: stores whole numbers, 1234, -12, etc.\r\n- float: Stores floating point numbers with decimals 12.13 or -15.42\r\n- char: Stores a single character, using single quotes, 'A'\r\n- boolean: Stores true or false\r\n\r\nWe can create variables like this:\r\ntype name = value;\r\n\r\nWhere type is a type from above, name is a name you create, and equals is used to assign a value to the variable.\r\n\r\nIn java it's highly encouraged to use camel case in naming variables, so:\r\nmyName, jobType, rockCount\r\n",
       "example": "String myName = \"Fred\";\r\nchar firstInitial = 'F';\r\nint pizzaCount = 34;\r\nfloat averageScore = 99.9f;\r\nboolean isEmpty = true;",
-      "remove": "String,char,int,float,boolean"
+      "drag": {
+          "main": "String myName = \"Fred\";\r\nchar firstInitial = 'F';\r\nint pizzaCount = 34;\r\nfloat averageScore = 99.9f;\r\nboolean isEmpty = true;",
+          "remove": "String,char,int,float,boolean"
+      }
     }
   },
   {
     "5": {
       "title": "Numbers",
       "body": "There are two types of numbers: whole numbers and decimals\r\nWhole numbers, positive or negative, are stored as Integer types. Mainly byte, short, int and long. It is important to note that each type has its own length and, therefore, its own uses.\r\n\r\nFor example:\r\nbyte uses 8 bits and includes a sign, which makes the range -128 - 127. \r\n\r\nFrom oracle:\r\n\t\"The byte data type can be useful for saving memory in large arrays, where the memory savings actually matters.\"\r\n\r\nFloating point numbers include a decimal part with one or more decimal. The types are float and double.\r\n\r\nint and double are the ones used the most, because it has the largest capacity. Generally we do not need to worry about running out of memory so we use high capacity variables to save us from running into issues.\r\n\r\n# int \r\nStores whole numbers from -2147483648 to 2147483647.\r\n```java\r\nint myNum = 2000;\r\nSystem.out.println( myNum );\r\n``` \r\n\r\n# float\r\nStores fractional numbers from 1.7e-308 to 1.7e+308\r\n```java\r\ndouble myNum = 2.25;\r\nSystem.out.println( myNum );\r\n```\r\n",
-      "example": "this eexample"
+      "drag" : {
+        "main"  : "double temp = 99.0;\r\nint numberCars = 23;\r\nint dogCount = 2321;\r\ndouble buildingHeight = 123.42;",
+        "remove": "double,23;,dogCount,123.42;"
+      }
     }
   },
   {
     "6": {
       "title": "Boolean",
-      "body": "Boolean can only store true or false. These values are typically used for conditionals, ie using <, >, == \r\n\r\nThe naming scheme for boolean variables typically starts with is. for example isJavaAwsome or isCakeGood.\r\n```java\r\nboolean isListEmpty = true;\r\nSystem.out.println( isListEmpty ); // true\r\n``` \r\n\r\n Operators:\r\n```java\r\n==    Equal to\r\n!=    Not Equal\r\n>     Greater Than\r\n<     Less Than\r\n>=    Greater Than or equal to\r\n<=    Less Than or equal to\r\n```\r\n\r\nWe can compare numbers and get boolean results:\r\n\r\n```java\r\n10 > 9;  // true\r\n9 < 15;  // true\r\n9 == 10; // false\r\n9 != 10; // true\r\n7 <= 7;  // true\r\n5 <= 7;  // true\r\n```\r\n\r\nWe also have logical operators:\r\n```java\r\n// &&: and operator\r\ntrue && true; // true\r\ntrue && false; // false\r\n// ||: or operator\r\ntrue || false; // true\r\nfalse || true; // true\r\nfalse || false; // false\r\n// ! not operator\r\n!true; // false\r\n!false // true\r\n```\r\n",
-      "example": "thisw example"
+      "body": "Boolean can only store true or false. These values are typically used for conditionals, ie using <, >, == \r\n\r\nThe naming scheme for boolean variables typically starts with is. for example isJavaAwsome or isCakeGood.\r\n```java\r\nboolean isListEmpty = true;\r\nSystem.out.println( isListEmpty ); // true\r\n``` \r\n\r\n Operators:\r\n```java\r\n==    Equal to\r\n!=    Not Equal\r\n>     Greater Than\r\n<     Less Than\r\n>=    Greater Than or equal to\r\n<=    Less Than or equal to\r\n```\r\n\r\nWe can compare numbers and get boolean results:\r\n\r\n```java\r\n10 > 9;  // true\r\n9 < 15;  // true\r\n9 == 10; // false\r\n9 != 10; // true\r\n7 <= 7;  // true\r\n5 <= 7;  // true\r\n```\r\n\r\nWe also have logical operators:\r\n```java\r\n// &&: and operator\r\ntrue && true; // true\r\ntrue && false; // false\r\n\r\n// ||: or operator\r\ntrue || false; // true\r\nfalse || true; // true\r\nfalse || false; // false\r\n\r\n// ! not operator\r\n!true; // false\r\n!false // true\r\n```\r\n",
+      "choice" : {
+        "question": "Which of the following will evaluate to true?\r\nboolean isFun = true",
+        "correct" : "isFun && true,isFun, false || isFun,true || false,true || true, 1 < 512,5 <=5 ,",
+        "incorrect": "isFun && false,10 < 9, 123 != 123,false || false,234 < 192,false && isFun"
+      }
     }
   },
   {
     "7": {
       "title": "String",
       "body": "A String variable is a collection of characters surrounded with quotes, this can include spaces and punctuation. \r\n```java\r\nString name = \"Fred Flinstone\";\r\n```\r\n\r\nWe can also use .length() to give us the number of characters contained in the string. \r\n```java \r\nString name = \"Fred Flinstone\";\r\nSystem.out.println( name.length() ); // 14\r\n```\r\n\r\nThere are also methods that can change the state of our string\r\n```java\r\nString name = \"Fred Flinstone\";\r\nSystem.out.println( name.toUpperCase() ); // \"FRED FLINSTONE\"\r\nSystem.out.println( name.toLowerCase() ); // \"fred flinstone\"\r\n```\r\n\r\nWe can \"add\" strings together with the + operator, this is called concatenation.\r\n```java\r\nString start = \"This is\";\r\nString end = \"one String\";\r\nSystem.out.println(start + \" \" + end);\r\n```\r\n\r\nNotice that we have added a space character in the middle of the two strings, spaces are not automatically added when concatenating strings.\r\n\r\nWhen inserting quotes or back slashes in strings you need to start them with a backslash to indicate that you want that character to be apart of the string.\r\n",
-      "example": "String quote = \" \\'this is a quote\\' \";\r\nSystem.out.println(quote); \\\\ 'this is a quote'\r\nString slash = \"We can include a back slash like so: \\\\ \";\r\nSystem.out.println(slash); \\\\ We can include a back slash like so: \\ "
+      "example": "String quote = \" \\'this is a quote\\' \";\r\nSystem.out.println(quote); \\\\ 'this is a quote'\r\nString slash = \"We can include a back slash like so: \\\\ \";\r\nSystem.out.println(slash); \\\\ We can include a back slash like so: \\ ",
+    	"move": {
+    		"correct"  : "String name = \"Jeff Bob\";,String place = \"Jefferson Ave\";,String dogName = \"Rufus\";,String catName = \"Fido\";,String carType = \"Ford\";",
+    		"incorrect": "Strng name = \"Sally Red\";,String storeName == \"Walmart\";,String boatName = 'USS America';,String numPeople = 20;,String drinkSize = \"Large;"
+    	}
     }
   },
   {
     "8": {
       "title": "Operators",
       "body": "We can use most of the normal mathematical operators to perform calculations. Although it is important to note that placing numbers next to parenthesis is not sufficient. and the equals sign is used as an assignment, and must always go to the left of equations. \r\n\r\n Instead of this notation: \r\n 4(5+5) = x \r\n We need to make multiplication explicit: \r\n x = 4 * (5 + 5)\r\n\r\n```java \r\nint x;\r\nx = 4 * (5 + 5);\r\nSystem.out.println(x); // 40\r\n\r\n```\r\n\r\nAdditionally division and multiplication that should result with decimals must always have a double or decimal attached to them. Otherwise the decimal will be discarded.\r\n\r\n```java\r\ndouble x;\r\nx = 10 / 4;\r\nSystem.out.println( x ); // 2 (since the decimal was discarded)\r\nx = 10.0 / 4;\r\nSystem.out.println( x ); // 2.5\r\n```\r\n\r\n\r\nWe can also combine the assignment operator and mathematical operators for a more condensed reassignment.",
-      "example": "int value;\r\n\r\n// Asignment Operator\r\n// =\r\nvalue = 10; // Result: 10\r\n\r\n// Addition Operator\r\n// += \r\n// same as value = value + number;\r\nvalue = 10;\r\nvalue += 10; // Result: 20\r\n\r\n// Subtraction Operator\r\n// -=\r\n// same as value = value - number;\r\nvalue = 10;\r\nvalue -= 10; // Result: 0\r\n\r\n// Muliplication Operator\r\n// *=\r\n// same as value = value * number;\r\nvalue = 10;\r\nvalue *= 10; // Result: 100\r\n\r\n// Division Operator\r\n// /=\r\n// same as value = value / number;\r\nvalue = 100;\r\nvalue /= 10; // Result: 10\r\n\r\n// Modulus Operator\r\n// %=\r\n// same as value = value % number;\r\nvalue = 3;\r\nvalue %= 2; // Result: 1"
-    }
-  },
-  {
-    "9": {
-      "title": "This title",
-      "body": "this body",
-      "example": "this example"
-    }
-  },
-  {
-    "10": {
-      "title": "This title",
-      "body": "this body",
-      "example": "this example"
+      "example": "int value;\r\n\r\n// Assignment Operator\r\n// =\r\nvalue = 10; // Result: 10\r\n\r\n// Addition Operator\r\n// += \r\n// same as value = value + number;\r\nvalue = 10;\r\nvalue += 10; // Result: 20\r\n\r\n// Subtraction Operator\r\n// -=\r\n// same as value = value - number;\r\nvalue = 10;\r\nvalue -= 10; // Result: 0\r\n\r\n// Muliplication Operator\r\n// *=\r\n// same as value = value * number;\r\nvalue = 10;\r\nvalue *= 10; // Result: 100\r\n\r\n// Division Operator\r\n// /=\r\n// same as value = value / number;\r\nvalue = 100;\r\nvalue /= 10; // Result: 10\r\n\r\n// Modulus Operator\r\n// %=\r\n// same as value = value % number;\r\nvalue = 3;\r\nvalue %= 2; // Result: 1",
+      "choice" : {
+        "question": "Which of the following are formatted correctly?/r/n/r/n int value = 10;",
+        "correct" : "value += 10;,value *= 2;,value /= 5;,value %= 2;, value = 2 * (2 + 2);, value = 60 * 10;,value = 10 + 4;, value = 15 / 5 * 2;",
+        "incorrect": "value +== 5;, value =* 9;, value =/ 8;, value = 10(4 + 1);, value = 10 / 4(100);,value = 10"
+      }
     }
   }
 ]

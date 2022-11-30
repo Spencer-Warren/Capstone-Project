@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.json.simple.JSONObject;
+
 import application.Mechanic;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -21,9 +23,11 @@ public class DragAndDrop extends Mechanic {
 	private List<Draggable> blanks;
 	private List<Draggable> wordDrags;
 
-	public DragAndDrop(String example, String wordsToRemove) {
-		this.fullExample = example;
-		this.wordsToRemove = new ArrayList<>(List.of(wordsToRemove.split(",")));
+	public DragAndDrop(JSONObject jsonData) {
+		this.fullExample = (String) jsonData.get("main");
+		String words = (String) jsonData.get("remove");
+		
+		this.wordsToRemove = new ArrayList<>(List.of(words.split(",")));
 
 		root = new VBox(7);
 		root.getStyleClass().add("mechanic-root");
