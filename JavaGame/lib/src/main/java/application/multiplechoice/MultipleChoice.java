@@ -1,5 +1,6 @@
 package application.multiplechoice;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -57,16 +58,20 @@ public class MultipleChoice extends Mechanic {
 
 	private VBox makeChoices() {
 		VBox choiceBox = new VBox(10);
-
+		
+		// Shuffle answers so we get diffrent ones
 		Collections.shuffle(correctAnswers);
 		Collections.shuffle(wrongAnswers);
-
+		
+		// Grab two right answers and two wrong
 		CheckBox b1 = new CheckBox(correctAnswers.get(0));
 		CheckBox b2 = new CheckBox(correctAnswers.get(1));
 		CheckBox b3 = new CheckBox(wrongAnswers.get(0));
 		CheckBox b4 = new CheckBox(wrongAnswers.get(1));
-
+		
 		choiceButtons = new ArrayList<>(List.of(b1, b2, b3, b4));
+		// shuffle order of checkboxes so its not always
+		// right right wrong wrong
 		Collections.shuffle(choiceButtons);
 
 		choiceBox.getChildren().addAll(choiceButtons);
@@ -99,13 +104,32 @@ public class MultipleChoice extends Mechanic {
 
 	@Override
 	public void save(ObjectOutputStream out) {
-		// TODO Auto-generated method stub
-		
+		try {
+			out.writeObject(correctAnswers.toArray());
+			out.writeObject(wrongAnswers.toArray());
+			for (CheckBox box : choiceButtons) {
+
+				out.writeBoolean(box.isSelected());
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void load(ObjectInputStream in) {
-		// TODO Auto-generated method stub
-		
+		try {
+			Object temp1 = in.readObject();
+			Object temp2 = in.readObject();
+			if (temp1 instanceof String[] correct && temp2 instanceof String[] wrong) {
+				correctAnswers = new ArrayList<>(List.of(correct));
+				wrongAnswers = new ArrayList<>(List.of(wrong));
+			}
+			for (CheckBox box : choiceButtons) {
+				box.setSelected(in.readBoolean());
+			}
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 }
