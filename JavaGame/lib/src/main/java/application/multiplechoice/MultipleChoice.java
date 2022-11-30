@@ -3,7 +3,6 @@ package application.multiplechoice;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -89,17 +88,7 @@ public class MultipleChoice extends Mechanic {
 
 	@Override
 	protected boolean isCorrect() {
-		int numberCorrect = 0;
-		for (CheckBox b : choiceButtons) {
-			if (b.isSelected()) {
-				if (correctAnswers.contains(b.getText())) {
-					numberCorrect++;
-				} else {
-					return false;
-				}
-			}
-		}
-		return numberCorrect == 2;
+		return getCurrentScore() == 2;
 	}
 
 	@Override
@@ -131,5 +120,25 @@ public class MultipleChoice extends Mechanic {
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	protected int getTotal() {
+		return 2;
+	}
+
+	@Override
+	protected int getCurrentScore() {
+		int numberCorrect = 0;
+		for (CheckBox b : choiceButtons) {
+			if (b.isSelected()) {
+				if (correctAnswers.contains(b.getText())) {
+					numberCorrect++;
+				} else {
+					return 0;
+				}
+			}
+		}
+		return numberCorrect;
 	}
 }

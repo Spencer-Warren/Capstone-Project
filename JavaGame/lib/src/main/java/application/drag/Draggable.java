@@ -21,8 +21,6 @@ public class Draggable extends Label implements Serializable {
 	public static final String EMPTY_WORD = " ";
 	private String correctWord;
 	private String originalWord;
-	private int spaces;
-	private boolean willMove;
 	private boolean isEmpty;
 
 	// overload
@@ -39,7 +37,6 @@ public class Draggable extends Label implements Serializable {
 		super();
 		this.originalWord = originalWord;
 		this.correctWord = correctWord;
-		spaces = -1;
 		setMinHeight(30);
 		setPrefHeight(USE_COMPUTED_SIZE);
 		setMinWidth(70);
@@ -63,8 +60,8 @@ public class Draggable extends Label implements Serializable {
 	// and able to receive a draggable
 	private void empty() {
 		setText("");
-		ObservableList<String> style  = getStyleClass();
-		if (!style.contains("drag-empty")){
+		ObservableList<String> style = getStyleClass();
+		if (!style.contains("drag-empty")) {
 			style.add("drag-empty");
 		}
 		style.remove("drag-full");
@@ -75,8 +72,8 @@ public class Draggable extends Label implements Serializable {
 	// and able to be dragged
 	private void set(String text) {
 		setText(text);
-		ObservableList<String> style  = getStyleClass();
-		if (!style.contains("drag-full")){
+		ObservableList<String> style = getStyleClass();
+		if (!style.contains("drag-full")) {
 			style.add("drag-full");
 		}
 		style.remove("drag-empty");
@@ -89,7 +86,6 @@ public class Draggable extends Label implements Serializable {
 		// called when you try to drag
 		setOnDragDetected((MouseEvent event) -> {
 			if (!isEmpty) { // cant drag empty ones
-//				System.out.println("Dragging...");
 				Dragboard db = startDragAndDrop(TransferMode.ANY);
 
 				// clipboard to copy string
@@ -121,7 +117,6 @@ public class Draggable extends Label implements Serializable {
 			Dragboard db = event.getDragboard();
 			// check contents and if this node is empty
 			if (db.hasString() && isEmpty) {
-//				System.out.println("Dropped: " + db.getString());
 				// Paste string into this node
 				set(db.getString());
 
@@ -146,13 +141,10 @@ public class Draggable extends Label implements Serializable {
 	public void write(ObjectOutputStream out) {
 		try {
 			if (getText().equals("")) {
-				System.out.println("NULL");
 				out.writeObject("NULL");
 			} else {
-				System.out.println(getText());
 				out.writeObject(getText());
 			}
-			System.out.println(isEmpty);
 			out.writeBoolean(isEmpty);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -166,13 +158,12 @@ public class Draggable extends Label implements Serializable {
 			if (wasEmpty) {
 				empty();
 			} else {
-				System.out.println(text);
 				set(text);
 			}
-			
+
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 }

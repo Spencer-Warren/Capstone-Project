@@ -27,8 +27,7 @@ public abstract class DefaultScene {
 	protected DefaultScene(Stage stage, VBox root) {
 		this.stage = stage;
 		this.root = root; // the root pane we are adding elements too
-		//root.setBackground(DEFAULT_BACKGROUND); // Use our default background in default properties
-		root.getStylesheets().add(Main.class.getResource("/Fluent.css").toString());
+		root.getStylesheets().add(Main.class.getResource("/Main.css").toString());
 		root.getStyleClass().add("background");
 		root.setPadding(new Insets(20));
 		scene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
@@ -68,7 +67,6 @@ public abstract class DefaultScene {
 		titleLabel.setAlignment(Pos.CENTER);
 		titleLabel.setMaxWidth(Double.MAX_VALUE);
 		titleLabel.setPadding(new Insets(20,0,0,0));
-//		DefaultProperties.border(titleLabel);
 		HBox titleBox = new HBox();
 
 		if (this instanceof SubScene s) {
@@ -82,7 +80,6 @@ public abstract class DefaultScene {
 		
 		getRoot().getChildren().addAll(titleBox);
 	}
-
 
 	protected abstract void initElements();
 }

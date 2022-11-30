@@ -119,7 +119,6 @@ public class Move extends Mechanic {
 
 	@Override
 	protected boolean isCorrect() {
-		correctStrings.forEach(System.out::println);
 		for (Draggable d : destinations) {
 			if (!correctStrings.contains(d.getText()))
 				return false;
@@ -155,5 +154,21 @@ public class Move extends Mechanic {
 		for (Draggable d : destinations) {
 			d.read(in);
 		}
+	}
+
+	@Override
+	protected int getTotal() {
+		return destinations.size();
+	}
+
+	@Override
+	protected int getCurrentScore() {
+		int score = 0;
+		for (Draggable d : destinations) {
+			if (d.isCorrect()) {
+				score++;
+			}
+		}
+		return score;
 	}
 }

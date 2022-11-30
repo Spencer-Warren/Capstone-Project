@@ -7,6 +7,7 @@ import application.level.Level;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -22,46 +23,42 @@ public class LevelSelectionScene extends SubScene {
 
 	@Override
 	protected void initElements() {		
-		GridPane buttonGrid = levelButtons();
+		FlowPane buttonFlow = levelButtons();
 		
 		createTitleBar("Level Selection");
 		
-		getRoot().getChildren().addAll( buttonGrid);
+		getRoot().getChildren().addAll( buttonFlow);
 		
 	}
 	
 	
-	private GridPane levelButtons() {
+	private FlowPane levelButtons() {
 		
 		int levelNumber = 1;
 		
-		GridPane grid = new GridPane();
-		DefaultProperties.fillParent(getRoot(), grid);
+		FlowPane flow = new FlowPane();
+		DefaultProperties.fillParent(getRoot(), flow);
 		
-		grid.setHgap(40);
-		grid.setVgap(40);
-		grid.setAlignment(Pos.CENTER);
-		grid.setPadding(new Insets(100));
+		flow.setHgap(40);
+		flow.setVgap(40);
+		flow.setAlignment(Pos.CENTER);
+		flow.setPadding(new Insets(100));
 		
-		for(int x = 0; x < 2; x++) {
-			for(int y = 0; y < 6
-					; y++) {
+		for(int i = 0; i < levels.size(); i++) {
 				
 				Button button = new Button(String.valueOf(levelNumber));
 				button.setPrefHeight(130);
 				button.setPrefWidth(130);
 				button.getStyleClass().add("button-level");
-				
-				grid.add(button, y, x);
+				flow.getChildren().add(button);
 				// Since button with a 1 belongs to ,
 				// the 1st level, but its in the 0th position
 				bindButtonToScene(button, levels.get(levelNumber - 1));
 				
 				levelNumber++;
-			}
 			
 		}
-		return grid;
+		return flow;
 	}
 	
 

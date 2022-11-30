@@ -65,13 +65,13 @@ public class LevelCreation {
 	}
 
 	private void pullMechanicStates() {
+		// Don't try to load a file that doesn't exist
+		File fin = new File(STATE_PATH);
+		if (!fin.exists()) {
+			return;
+		}
+		
 		try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(STATE_PATH));) {
-			// Don't try to load a file that doesn't exist
-			File fin = new File(STATE_PATH);
-			if (!fin.exists()) {
-				return;
-			}
-
 			int numToRead = in.readInt();
 			int levelNum;
 			for (int i = 0; i < numToRead; i++) {

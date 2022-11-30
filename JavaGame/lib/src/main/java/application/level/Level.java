@@ -100,7 +100,11 @@ public class Level extends SubScene {
 	}
 
 	private void createBody() {
-
+		/*
+		 * I've delimited code in the JSON to start with ```java
+		 * and end with ``` this lets us detect code blocks 
+		 * and format them accordingly
+		 */
 		String[] lines = bodyText.split("\n");
 
 		boolean isCode = false;
@@ -108,24 +112,29 @@ public class Level extends SubScene {
 		StringBuilder textString = new StringBuilder();
 
 		for (String line : lines) {
+			// End of a code block
 			if (line.startsWith("```") && !line.contains("java")) {
 				addToBody(codeString, true);
 				isCode = false;
 			}
-
+			// still in code block
 			else if (isCode) {
 				codeString.append(line);
 			}
-
+			// Start of a code block
 			else if (line.startsWith("```java")) {
+				// Push all the normal text
 				addToBody(textString, false);
 				isCode = true;
 			}
-
+			// Normal text
 			else {
 				textString.append(line);
 			}
 
+		}
+		if(!textString.isEmpty()) {
+			addToBody(textString, false);
 		}
 
 		addToBody(new StringBuilder("Example:"), false);
@@ -136,6 +145,7 @@ public class Level extends SubScene {
 	private void addToBody(StringBuilder text, boolean isCode) {
 
 		Label block = new Label(text.toString().trim());
+		block.setWrapText(!isCode);
 		text.setLength(0); // clear string builder
 		block.getStyleClass().add(isCode ? "code-block" : "text-block");
 

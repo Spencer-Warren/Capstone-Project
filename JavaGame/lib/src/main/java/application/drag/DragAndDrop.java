@@ -7,6 +7,7 @@ import java.util.List;
 
 import application.Mechanic;
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -23,8 +24,8 @@ public class DragAndDrop extends Mechanic {
 		this.fullExample = example;
 		this.wordsToRemove = new ArrayList<>(List.of(wordsToRemove.split(",")));
 
-		root = new VBox();
-		root.getStyleClass().add("mechnic-root");
+		root = new VBox(7);
+		root.getStyleClass().add("mechanic-root");
 		root.setAlignment(Pos.CENTER);
 
 		wrapper = new VBox(root);
@@ -57,11 +58,12 @@ public class DragAndDrop extends Mechanic {
 					// draggables with the words at the bottom
 					words.add(word);
 
-					row.getChildren().add(emptyDrag);
+					row.getChildren().addAll(emptyDrag, new Text(" "));
 				} else {
 					// else just add the word to the row
-					Text temp = new Text(word + " ");
-					temp.getStyleClass().add("drag");
+					Label temp = new Label(word + " ");
+					temp.getStyleClass().add("drag-text");
+					temp.setMinHeight(30.0);
 					row.getChildren().add(temp);
 				}
 			}
@@ -71,7 +73,7 @@ public class DragAndDrop extends Mechanic {
 	}
 
 	private HBox addWordDrags() {
-		// Add all words weve taken out
+		// Add all words we've taken out
 		HBox wordsBlock = new HBox();
 		wordsBlock.setSpacing(15);
 		wordsBlock.getStyleClass().add("drag-box");
@@ -84,7 +86,7 @@ public class DragAndDrop extends Mechanic {
 		// take out all the words
 		List<String> words = takeOutWords();
 
-		// stream all the words that weve taken out to new draggables to add
+		// stream all the words that we've taken out to new draggables to add
 		wordDrags = words.stream().map(Draggable::new).toList();
 
 		// add the created draggables
@@ -145,5 +147,21 @@ public class DragAndDrop extends Mechanic {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	protected int getTotal() {
+		return blanks.size();
+	}
+
+	@Override
+	protected int getCurrentScore() {
+		int score = 0;
+		for(Draggable d : blanks) {
+			if (d.isCorrect()) {
+				score++;
+			}
+		}
+		return score;
 	}
 }
