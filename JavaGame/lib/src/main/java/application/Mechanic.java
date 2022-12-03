@@ -11,6 +11,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public abstract class Mechanic {
+	private Button resetButton;
+	
+	protected Mechanic(Button resetButton) {
+		this.resetButton = resetButton;
+	}
 
 	public abstract VBox create();
 
@@ -49,9 +54,10 @@ public abstract class Mechanic {
 		Button check = new Button("Check");
 
 		gradingBar.setSpacing(10);
-		gradingBar.getChildren().addAll(reset, check, scoreBox, grade);
+		gradingBar.getChildren().addAll(reset, resetButton, check, scoreBox, grade);
 
 		reset.setOnAction((ActionEvent a) -> reset());
+		
 
 		// Will Probably expand later
 		check.setOnAction((ActionEvent a) -> {

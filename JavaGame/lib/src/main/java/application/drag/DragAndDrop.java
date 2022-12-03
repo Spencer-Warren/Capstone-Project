@@ -10,6 +10,7 @@ import org.json.simple.JSONObject;
 
 import application.Mechanic;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -23,7 +24,8 @@ public class DragAndDrop extends Mechanic {
 	private List<Draggable> blanks;
 	private List<Draggable> wordDrags;
 
-	public DragAndDrop(JSONObject jsonData) {
+	public DragAndDrop(JSONObject jsonData, Button resetMechanic) {
+		super(resetMechanic);
 		this.fullExample = (String) jsonData.get("main");
 		String words = (String) jsonData.get("remove");
 		
@@ -89,10 +91,11 @@ public class DragAndDrop extends Mechanic {
 	}
 
 	public VBox create() {
+		root.getChildren().clear();
 		// take out all the words
 		List<String> words = takeOutWords();
 
-		// stream all the words that we've taken out to new draggables to add
+		// Stream all the words that we've taken out to new draggables to add
 		wordDrags = words.stream().map(Draggable::new).toList();
 		// We want to shuffle these later
 		wordDrags = new ArrayList<>(wordDrags);
@@ -103,6 +106,7 @@ public class DragAndDrop extends Mechanic {
 		// use the mechanic class method
 		HBox gradingBar = makeGradeBar();
 
+		
 		// add all the things
 		root.getChildren().addAll(wordsBlock, gradingBar);
 

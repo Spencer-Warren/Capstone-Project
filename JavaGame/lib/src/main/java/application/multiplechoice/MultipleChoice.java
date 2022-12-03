@@ -11,6 +11,7 @@ import org.json.simple.JSONObject;
 
 import application.Mechanic;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -26,8 +27,8 @@ public class MultipleChoice extends Mechanic {
 
 	private List<CheckBox> choiceButtons;
 
-	public MultipleChoice(JSONObject data) {
-
+	public MultipleChoice(JSONObject data, Button resetMechanic) {
+		super(resetMechanic);
 		question = (String) data.get("question");
 
 		String tempA = (String) data.get("correct");

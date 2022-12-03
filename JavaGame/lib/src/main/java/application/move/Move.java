@@ -11,6 +11,7 @@ import org.json.simple.JSONObject;
 import application.Mechanic;
 import application.drag.Draggable;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -31,8 +32,8 @@ public class Move extends Mechanic {
 	// Number of rights and wrongs
 	private static int numEach = 3;
 
-	public Move(JSONObject rightWrong) {
-
+	public Move(JSONObject rightWrong, Button resetMechanic) {
+		super(resetMechanic);
 		root = new VBox(20);
 		options = new ArrayList<>();
 		destinations = new ArrayList<>();
@@ -50,6 +51,8 @@ public class Move extends Mechanic {
 	}
 
 	public VBox create() {
+		options.clear();
+		destinations.clear();
 		Label instructions = new Label("Drag the corrrectly formatted answers to the left!");
 
 		originDrags();

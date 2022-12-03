@@ -1,24 +1,23 @@
 package application.level;
 
+import java.util.List;
+
 import org.json.simple.JSONObject;
 
 import application.Mechanic;
 import application.drag.DragAndDrop;
 import application.move.Move;
-import application.multiplechoice.*;
+import application.multiplechoice.MultipleChoice;
 import application.scenes.DefaultScene;
 import application.scenes.SubScene;
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class Level extends SubScene {
@@ -29,6 +28,7 @@ public class Level extends SubScene {
 	private String example;
 	private VBox body;
 	private Mechanic mechanic;
+	private Button resetMechanic;
 
 	public Level(Stage stage, DefaultScene subScene, int levelNumber, JSONObject levelData) {
 		super(stage, new VBox(), subScene);
@@ -38,6 +38,10 @@ public class Level extends SubScene {
 
 		convertJSON();
 		initElements();
+		
+		resetMechanic = new Button("Randomize");
+		resetMechanic.setOnAction((ActionEvent e) -> resetMechanic());
+		
 		addMechanic();
 	}
 
@@ -61,20 +65,36 @@ public class Level extends SubScene {
 	private void addMechanic() {
 
 		if (levelData.containsKey("drag")) {
-			mechanic = new DragAndDrop((JSONObject) levelData.get("drag"));
+			mechanic = new DragAndDrop((JSONObject) levelData.get("drag"), resetMechanic);
 		}
 
 		else if (levelData.containsKey("move")) {
-			mechanic = new Move((JSONObject) levelData.get("move"));
+			mechanic = new Move((JSONObject) levelData.get("move"), resetMechanic);
 		}
 
 		else if (levelData.containsKey("choice")) {
-			mechanic = new MultipleChoice((JSONObject) levelData.get("choice"));
+			mechanic = new MultipleChoice((JSONObject) levelData.get("choice"), resetMechanic);
 
 		}
 
-		if (mechanic != null)
-			body.getChildren().add(mechanic.create());
+		if (mechanic != null) {
+			VBox mechanicBox = mechanic.create();
+			mechanicBox.getStyleClass().add("mechanic");
+			body.getChildren().add(mechanicBox);
+		}
+
+	}
+
+	// Remove the mechanic and then call mechanic creation again
+	private void resetMechanic() {
+		List<Node> children = body.getChildren();
+		for (int i = 0; i < children.size(); i++) {
+			Node temp = children.get(i);
+			if (temp.getStyleClass().contains("mechanic")) {
+				body.getChildren().remove(temp);
+				addMechanic();
+			}
+		}
 	}
 
 	@Override
@@ -132,11 +152,11 @@ public class Level extends SubScene {
 			}
 
 		}
-		
+
 		if (!textString.isEmpty()) {
 			addToBody(textString, false);
 		}
-		
+
 		if (example != null) {
 			addToBody(new StringBuilder("Example:"), false);
 			addToBody(new StringBuilder(example), true);

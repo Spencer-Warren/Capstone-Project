@@ -31,7 +31,6 @@ public class DefaultProperties {
 	}
 
 	public static Font loadFont(String fileName, int size) {
-		//URI fileIn = DefaultProperties.class.getClassLoader().getResource(fileName).toURI();
 		InputStream fileIn = DefaultProperties.class.getClassLoader().getResourceAsStream(fileName);
 		return Font.loadFont(fileIn, size);
 	}
