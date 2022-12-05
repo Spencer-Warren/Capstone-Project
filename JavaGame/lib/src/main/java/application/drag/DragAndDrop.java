@@ -9,6 +9,7 @@ import java.util.List;
 import org.json.simple.JSONObject;
 
 import application.Mechanic;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -91,7 +92,14 @@ public class DragAndDrop extends Mechanic {
 	}
 
 	public VBox create() {
+		// For Randomize
 		root.getChildren().clear();
+		
+		
+		Label prompt = new Label("Drag the words to the correct place to form valid synatx");
+		prompt.setPadding(new Insets(0, 0, 10, 0));
+		root.getChildren().add(prompt);
+		
 		// take out all the words
 		List<String> words = takeOutWords();
 
@@ -106,7 +114,6 @@ public class DragAndDrop extends Mechanic {
 		// use the mechanic class method
 		HBox gradingBar = makeGradeBar();
 
-		
 		// add all the things
 		root.getChildren().addAll(wordsBlock, gradingBar);
 

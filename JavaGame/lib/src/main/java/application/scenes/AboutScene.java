@@ -1,5 +1,6 @@
 package application.scenes;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -17,18 +18,35 @@ public class AboutScene extends SubScene {
 	@Override
 	protected void initElements() {
 		createTitleBar("About");
-
+		VBox body = new VBox();
+		body.setSpacing(15);
+		body.setPadding(new Insets(20));
+		body.getStyleClass().add("level-body");
+		
 		Label text = new Label(
 				"""
-				Block of text
+				This desktop app is a coding tutorial aimed towards a less technical audience.
+				
+				It includes 8 topics each with its own mini activity. And saves where you were in those activities.
+				It has all the text, information and activity answers stored in a JSON file.
+				
+				This application was built using Java and utilizes the JavaFX Libraries for its UI.
+				
+				Created by:
+				        Spencer Warren
+				        
+				Version 1.0
+				12/3/2022
 			
 				""");
-
+		
 		text.setWrapText(true);
 		text.setTextAlignment(TextAlignment.JUSTIFY);
 		text.setFont(new Font(15));
-
-		getRoot().getChildren().add(text);
+		
+		body.getChildren().addAll(text);
+		
+		getRoot().getChildren().add(body);
 
 	}
 

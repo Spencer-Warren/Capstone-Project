@@ -28,7 +28,7 @@
       "example": "int x = 10;\r\n// Print out varible for debug\r\nSystem.out.println(x);\r\n\r\nstatic int DEFAULT_HEIGHT = 10;\r\n/*\r\n The default height of the square needs to stay constant\r\n Because of the transformations applied later in the program\r\n*/\r\nSystem.out.println(\"height constant: \" + DEFAULT_HEIGHT);",
       "choice": {
         "question": "Which two of the following comments is formatted correctly?",
-        "correct": "// This is a comment,\\* This is another comment *\\,\\* A different comment *\\, \\* This is a super long comment *\\,\r\n// FIXME, // TODO: init method",
+        "correct": "// This is a comment,/* This is another comment */,/* A different comment */, /* This is a super long comment */,\r\n// FIXME, // TODO: init method",
         "incorrect": "/ More comments, \\\\ Comments on comments, \\* Long comment about why this code is essential*/, /* Tonys pizza is a nice place to eat lunch *//"
       }
     }
