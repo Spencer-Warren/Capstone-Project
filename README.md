@@ -8,6 +8,8 @@ The answers are randomly generated with different prompts so that the answers ca
 Through this program, less technical audiences can gain a basic understanding of coding. 
 The software will also enable a better channel of communication with developers. 
 
+This application was built using Java and Utilizes the JavaFX Libraries for its UI
+
 Builds can be found in the [releases tab](https://github.com/Spencer-Warren/Capstone-Project/releases)
 
 You can also view the [source code](https://github.com/Spencer-Warren/Capstone-Project/tree/master/JavaGame/lib/src/main/java/application)
